@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html><!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>login and signup Form in HTML | CodingNepal</title>
+      <link rel="stylesheet" href="{% static 'authentication/login.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="container">
+            <div class="title-text">
+                <a href="#" class="link">
+                   <img style="width: 150px;" src="{% static 'authentication/nepal.png' %}"/>
+                <!-- <div class="title login">
+                    Biomedical Equipment Management System
+                </div> -->
+                 <!-- <svg class="logo">
+                        <use xlink:href="./sprite.svg#icon-aid-kit"></use>
+                </svg> -->
+                </a>
+                <!-- <div class="title register">
+                    Biomedical Equipment Management System
+                </div> -->
+           </div>
+         <div class="form-container">
+            <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <label for="login" class=" slide login" id="login">Welcome</label>
+               <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+               <form action="#" class="login" method="POST"> 
+             {% csrf_token %}
+                  <div class="field">
+                     <input type="text" name = "username" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                     <input name="password" type="password" placeholder="Password" required>
+                  </div>
+                 
+                  <div class="field btn signup-link">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Login">
+                  </div>
+                  
+               </form>
+
+               <form action="#" class="field field__form">
+
+                  <div class="field__box mgT">
+                     <div class="field mgR"><a href="./Hospitalsignup.html">Hospital</a></div>
+                     <div class="field mgR"><a href="./signup.html">Engineer</a></div>
+                  </div>
+                     
+                  <!-- <div class="field btn mgT">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Signup">
+                  </div> -->
+               </form>
+
+            </div>
+         </div>
+      </div>
+
+      <script>
+         const loginText = document.querySelector(".title-text .login");
+         const loginForm = document.querySelector("form.login");
+         const loginBtn = document.getElementById("login");
+         // const loginBtn = document.querySelector("label.login");
+         // const signupBtn = document.querySelector("label.register");
+         const signupBtn = document.getElementById("register");
+         const signupLink = document.querySelector("form .signup-link a");
+         const slider = document.querySelector(".slide-controls .slider-tab");
+         console.log(signupBtn);
+         console.log(loginForm);
+         console.log(loginBtn);
+         signupBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "-50%";
+         //   loginText.style.marginLeft = "-50%";
+           slider.style.left="50%";
+           console.log("register clicked");
+         });
+         loginBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "0%";
+         //   loginText.style.marginLeft = "0%";
+           slider.style.left="0%";
+
+         });
+         signupLink.onclick = (()=>{
+           signupBtn.click();
+           return false;
+         });
+      </script>
+   </body>
+</html>
