@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8m$mmax(hbmup+pzqc%$4#)h45(xjph1*6so%6%^jbpkxp*my3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.88.214', '127.0.0.1', '192.168.43.10']
 
 
 # Application definition
@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'about',
     'channels',
     'tracking',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -89,12 +91,26 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+LD_LIBRARY_PATH='/usr/local/lib'
+
+SPATIAL_REF_SYS = {
+    '4326': '+proj=longlat +datum=WGS84 +no_defs ',
 }
+
+# Set the database engine for GIS
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'WMS_database',  
+        'USER': 'root',  
+        'PASSWORD': '',  
+        'HOST': '127.0.0.1',  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
+}  
 
 
 # Password validation
@@ -135,6 +151,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR.joinpath('static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
