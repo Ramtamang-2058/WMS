@@ -5,6 +5,7 @@ urlpatterns = [
     #authentication
     path('', views.user_login, name="login"),
     path('account/change_password', views.change_password, name="change_password"),
+    path('account/password/success', views.change_success, name="change_success"),
 
 
     #administrator 

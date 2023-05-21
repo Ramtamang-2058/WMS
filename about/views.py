@@ -409,3 +409,9 @@ def change_password(request):
             update_session_auth_hash(request, request.user)
             messages.success(request, 'Your password has been changed successfully.')
     return render(request, 'about/authentication/change_password.html')
+
+
+
+#change success
+def change_success(request):
+    return render(request, 'about/authentication/change_success.html')
