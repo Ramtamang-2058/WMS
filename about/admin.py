@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Dustbin, Category, Vendor
+from . models import Dustbin, Category, Vendor, Notification
 
 # Register your models here.
 class LocationAdmin(admin.ModelAdmin):
@@ -12,3 +12,4 @@ class LocationAdmin(admin.ModelAdmin):
 admin.site.register(Dustbin, LocationAdmin)
 admin.site.register(Category)
 admin.site.register(Vendor)
+admin.site.register(Notification)

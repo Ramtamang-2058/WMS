@@ -7,9 +7,9 @@ from django.contrib.sessions.models import Session
 from django.utils import timezone
 from . models import *
 from django.db.models import Subquery, OuterRef, F
-from django.core.files.storage import default_storage
-from django.db.models import IntegerField
-from django.db.models.functions import Cast
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
@@ -298,10 +298,114 @@ def vendor_profile(request):
     if request.user.is_authenticated:
         usr  = User.objects.get(id = request.user.id)
         vendor = Vendor.objects.get(user = request.user)
+
+        vendor = Vendor.objects.get(user = request.user)
+        
+        category = vendor.category  # Replace with your desired category
+
+        # Filter DataEntry by category and retrieve the latest entry
+        latest_entry = DataR.objects.filter(category=category).latest('created_date')
+        current_distance = latest_entry.distance
+       
+
+        if int(current_distance) < 15:
+            # Check if an unread notification already exists for the latest entry
+            unread_notification = Notification.objects.filter(data_entry=latest_entry, read=False).first()
+
+            if not unread_notification:
+                # Create a new unread notification
+                notification = Notification.objects.create(data_entry=latest_entry, message="Distance exceeds 90%, location:" + latest_entry.location)
+
+            # Count the number of unread notifications
+            unread_notification_count = Notification.objects.filter(data_entry=latest_entry, read=False).count()
+
+            # Fetch the last 5 notifications for the user, ordered by the latest created date
+            last_5_notifications = Notification.objects.filter(data_entry__category=category).order_by('-created_date')[:5]
+        else:
+            # If the distance is below 90%, mark all existing notifications as read
+            Notification.objects.filter(data_entry=latest_entry).update(read=True)
+            unread_notification_count = 0
+            # Fetch the last 5 notifications for the user, ordered by the latest created date
+            last_5_notifications = Notification.objects.filter(data_entry__category=category).order_by('-created_date')[:5]
+
         context = {
             'user': usr,
-            'vendor': vendor
+            'vendor': vendor,
+            'show_notification': unread_notification_count > 0,
+            'notification_count': unread_notification_count,
+            'last_notifications': last_5_notifications,
         }
         return render(request, 'about/vendor/profile.html', context)
     else:
         return redirect('login')
+    
+
+#notification read
+
+def mark_notification_as_read(request, notification_id):
+    notification = Notification.objects.get(id=notification_id)
+    notification.read = True
+    notification.save()
+    print("successfully saved")
+    return redirect('profile')
+
+
+
+#notification
+def notification(request):
+    if request.user.is_authenticated:
+        usr  = User.objects.get(id = request.user.id)
+        vendor = Vendor.objects.get(user = request.user)
+        
+        category = vendor.category  # Replace with your desired category
+
+        # Filter DataEntry by category and retrieve the latest entry
+        latest_entry = DataR.objects.filter(category=category).latest('created_date')
+        current_distance = latest_entry.distance
+
+
+        # Check if the percentage is greater than 90% and an unread notification exists
+        unread_notification = Notification.objects.filter(data_entry=latest_entry, read=False).first()
+        print("unread notification")
+        print(unread_notification)
+        if current_distance < 15 and not unread_notification:
+            # Create a new unread notification
+            notification = Notification.objects.create(data_entry=latest_entry, message="Distance exceeds 90%")
+            notification_count = 1
+        elif unread_notification:
+            # Mark the existing unread notification as read
+            unread_notification.read = True
+            unread_notification.save()
+            notification_count = 0
+        else:
+            notification_count = 0
+
+        return render(request, 'about/vendor/profile.html', {
+            'show_notification': notification_count > 0,
+            'notification_count': notification_count
+      })
+    else:
+        return redirect('login')
+    
+
+
+#password change
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        #validation
+        if not request.user.check_password(old_password):
+            messages.error(request, 'Incorrect old Password')
+        elif new_password1 != new_password2:
+            messages.error(request, 'New password do not match.')
+
+        else:
+            request.user.set_password(new_password1)
+            request.user.save()
+            update_session_auth_hash(request, request.user)
+            messages.success(request, 'Your password has been changed successfully.')
+    return render(request, 'about/authentication/change_password.html')

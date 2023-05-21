@@ -2,8 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #administrator 
+    #authentication
     path('', views.user_login, name="login"),
+    path('account/change_password', views.change_password, name="change_password"),
+
+
+    #administrator 
     path('dashboard/admin', views.admin_dashboard,  name="admin_dashboard"),
     path('dashboard/vendor', views.vendor_dashboard, name="vendor_dashboard"),
     path('vendors/list', views.vendor, name="vendors"),
@@ -24,5 +28,9 @@ urlpatterns = [
     path('map/route', views.view_map, name='map'),
     path('bins/all', views.vendor_bins, name="vendors_bins"),
     path('my/details', views.vendor_profile, name = 'profile'),
+
+    #notification read
+    path('mark-notification-as-read/<int:notification_id>/', views.mark_notification_as_read, name='mark_notification_as_read'),
+
 
 ]

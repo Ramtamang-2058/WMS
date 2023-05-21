@@ -9,6 +9,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
+    
+    
       <div class="container">
             <div class="title-text">
                 <a href="#" class="link">
@@ -34,12 +36,12 @@
                <form action="#" class="login" method="POST"> 
              {% csrf_token %}
                   <div class="field">
-                     <input type="text" name = "username" placeholder="Email Address" required>
+                     <input type="text" name = "username" placeholder="Username/Phone" required>
                   </div>
                   <div class="field">
                      <input name="password" type="password" placeholder="Password" required>
                   </div>
-                 
+                  
                   <div class="field btn signup-link">
                      <div class="btn-layer"></div>
                      <input type="submit" value="Login">

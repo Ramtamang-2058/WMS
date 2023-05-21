@@ -79,16 +79,7 @@ class Vendor(models.Model):
 
 #notification
 class Notification(models.Model):
-    options = (
-        ('True', 'True'),
-        ('False', 'False'),
-    )
-    dustbin = models.ForeignKey(Dustbin, on_delete=models.CASCADE, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    notification_type = models.CharField(max_length=255, null=True, blank=True)
-    message = models.TextField(null=True, blank=True)
-    created_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    status = models.CharField(max_length=255, choices=options, null=True, blank=True)
-
-
-
+    data_entry = models.ForeignKey(DataR, on_delete=models.CASCADE)
+    message = models.CharField(max_length=200)
+    read = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)

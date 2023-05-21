@@ -13887,10 +13887,12 @@ dl {
           position: absolute;
           font-size: 0.9rem;
           margin-top: 0;
+          right: 0;
+          left: auto;
           padding: 0; }
           .rtl .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
             right: auto;
-            left: 0; }
+            left: auto; }
           .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
             margin-bottom: 0;
             padding: 11px 13px;
