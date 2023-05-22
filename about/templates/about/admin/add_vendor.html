@@ -200,8 +200,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bio' %}">Bio Bins</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bottle' %}">Bottle Bins</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Plastic Bins</a></li
-              </ul>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Plastic Bins</a></li </ul>
             </div>
           </li>
           <li class="nav-item">
@@ -216,7 +215,7 @@
               <i class="mdi mdi-comment-processing menu-icon"></i>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
               aria-controls="general-pages">
@@ -248,10 +247,10 @@
           </div>
           <div class="wrapper" style="background-color: white;">
             <div class="inner">
-              <div class="image-holder">
+              <!-- <div class="image-holder">
                 <img src="{% static 'admin/images/waste.jpg' %}" ; style="margin-top: 150px;" alt="image">
 
-              </div>
+              </div> -->
               <form method="POST" action="{% url 'add_vendor' %}" enctype="multipart/form-data">
                 {% csrf_token %}
 
@@ -310,8 +309,8 @@
                   <input type="password" placeholder="System Password" class="form-control" name="password">
                 </div>`
                 <div class="form-wrapper">
-                  < <button type="submit" class="hover-button">Register</button>
-                    >
+                  <button type="submit" class="hover-button">Register</button>
+
                 </div>
               </form>
 

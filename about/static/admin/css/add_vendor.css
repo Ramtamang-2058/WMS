@@ -37,7 +37,7 @@
     min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
+    /* display: flex; */
     align-items: center; }
    
   .inner {
@@ -45,11 +45,11 @@
     background: #fff;
     max-width: 850px;
     margin: auto;
-    display: flex; }
+    }
     .inner .image-holder {
       width: 50%; }
     .inner form {
-      width: 50%;
+      width: auto;
       padding-top: 36px;
       padding-left: 45px;
       padding-right: 45px; 
