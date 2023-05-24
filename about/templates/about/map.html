@@ -1,0 +1,57 @@
+{% extends 'about/base.html' %}
+{%load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Locations:</h3>
+            <ul>
+            {% for location in locations %}
+                <li>{{ location.name }}: {{ location.latitude }}, {{ location.longitude }}</li>
+            {% endfor %}
+            </ul>
+            <h3>Route:</h3>
+            {% if route %}
+            <p>Distance: {{ route.distance }} meters</p>
+            <p>Time: {{ route.time }} seconds</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div id="map" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+    var map = L.map('map').setView([{{ locations.0.latitude }}, {{ locations.0.longitude }}], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+    }).addTo(map);
+
+    var coordinates = [
+    {% for location in locations %}
+        [{% if forloop.first %}{{ location.latitude }}, {{ location.longitude }}{% endif %}],
+        [{% if not forloop.first and not forloop.last %}{{ location.latitude }}, {{ location.longitude }}{% endif %}],
+        [{% if forloop.last %}{{ location.latitude }}, {{ location.longitude }}{% endif %}],
+    {% endfor %}
+    ];
+
+    var markers = L.featureGroup();
+
+    coordinates.forEach(function(coord) {
+        var marker = L.marker([coord[0], coord[1]]);
+        marker.addTo(map);
+        markers.addLayer(marker);
+    });
+
+    markers.addTo(map);
+
+    var polyline = L.polyline(coordinates, {color: 'blue'}).addTo(map);
+
+    map.fitBounds(polyline.getBounds());
+</script>
+{% endblock %}

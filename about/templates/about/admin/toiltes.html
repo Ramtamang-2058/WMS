@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GraphHopper Matrix API Example</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- include Leaflet CSS and JavaScript libraries -->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="https://rawgit.com/perliedman/leaflet-routing-machine/master/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+
+  <!-- include GraphHopper client library -->
+  <script src="https://graphhopper.com/api/1/matrix?profile=car&fail_fast=true&key=15f53081-57b0-4394-9152-35dac2ec952f"></script>
+
+  <style>
+    #map {
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    // create Leaflet map
+    var map = L.map('map').setView([52.517037, 13.388860], 13);
+
+    // add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    // define array of locations to route between
+    var locations = [
+      [27.729009072545885, 85.31217861886972], // Berlin, Germany
+      [27.71420490951143, 85.33250748063085], // Paris, France
+      [27.70631665974085, 85.35419547101495], // London, UK
+      [27.727232050597006, 85.36856612900034], // New York, USA
+      [27.68550219266496, 85.32004069227912] // San Francisco, USA
+    ];
+
+    // create GraphHopper Matrix API client
+    var ghMatrix = new GraphHopper.Matrix({
+      key: '15f53081-57b0-4394-9152-35dac2ec952f', // replace with your GraphHopper API key
+      vehicle: 'car',
+      points: locations
+    });
+
+    // get travel times between locations using Matrix API
+    ghMatrix.doRequest()
+      .then(function(response) {
+        // create GeoJSON LineString to hold route coordinates
+        var lineString = {
+          "type": "LineString",
+          "coordinates": []
+        };
+
+        // add locations to LineString coordinates
+        for (var i = 0; i < response.distances.length; i++) {
+          lineString.coordinates.push(locations[i]);
+
+          // if not at last location, add next location as well
+          if (i < response.distances.length - 1) {
+            lineString.coordinates.push(locations[i+1]);
+          }
+        }
+
+        // create GeoJSON feature from LineString
+        var feature = {
+          "type": "Feature",
+          "geometry": lineString,
+          "properties": {}
+        };
+
+        // create GeoJSON feature collection with single feature
+        var featureCollection = {
+          "type": "FeatureCollection",
+          "features": [feature]
+        };
+
+        // add GeoJSON feature collection to map as a layer
+        L.geoJSON(featureCollection).addTo(map);
+
+        // zoom map to fit layer bounds
+        map.fitBounds(L.geoJSON(featureCollection).getBounds());
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
