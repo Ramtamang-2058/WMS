@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
 
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/_navbar.scss' %}">
+    <link rel="stylesheet" href="assets/scss/_navbar.scss">
+
     
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -38,7 +41,7 @@
               <a class="navbar-brand brand-logo-mini" href="index.html"><img style="max-width: auto;
         height: 100%;" src="{% static 'authentication/nepal.png' %}" alt="logo" /></a>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+            <div class="navbar-menu-wrapper d-flex align-items-stretch" >
               <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="mdi mdi-menu"></span>
               </button>
@@ -57,7 +60,11 @@
                   <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
+                      {% if request.user.is_superuser %}
+                      <img src="{% static 'admin/images/user.svg' %}">
+                      {% else %}
                       <img src="{{vendor.profile_image.url}}" alt="image">
+                      {% endif %}
                       <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
