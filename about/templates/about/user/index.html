@@ -170,7 +170,7 @@ height: 100%;" src="{% static 'authentication/nepal.png' %}" alt="logo" /></a>
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bio' %}">Plastic Bins</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bottle' %}">Glass Bins</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Bio Bins</a></li
+                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Bio Bins</a></li>
               </ul>
             </div>
           </li>
@@ -207,8 +207,13 @@ height: 100%;" src="{% static 'authentication/nepal.png' %}" alt="logo" /></a>
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> My Detail </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+                {% if request.user.is_superuser %}
+                  <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                  {% else %}
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                  {% endif %}
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+
               </ul>
             </div>
           </li>

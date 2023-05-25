@@ -6,11 +6,36 @@
       <meta charset="utf-8">
       <title>login and signup Form in HTML | CodingNepal</title>
       <link rel="stylesheet" href="{% static 'authentication/login.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/alert_message.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+      
+
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
     
-    
+      {% if messages %}
+    <div class="toast active">
+        <div class="toast-content">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <i class="fas fa-times check"></i>
+                    <div class="message error">
+                {% elif message.tags == 'success' %}
+                    <i class="fas fa-check check"></i>
+                    <div class="message success">
+                {% endif %}
+                    <span class="text text-1">{{ message.tags }}</span>
+                    <span class="text text-2">{{ message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <i class="fas fa-times close"></i>
+        <div class="progress active"></div>
+    </div>
+{% endif %}
+
       <div class="container">
             <div class="title-text">
                 <a href="#" class="link">
@@ -95,5 +120,6 @@
            return false;
          });
       </script>
+          <script src="{% static 'assets/js/alert_message.js' %}"></script>
    </body>
 </html>

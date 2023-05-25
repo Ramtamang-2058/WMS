@@ -239,13 +239,15 @@
                         </a>
                         <div class="collapse" id="general-pages">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> My
-                                        Detail </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Change
+                                {% if request.user.is_superuser %}
+                                <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                                {% else %}
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a>
+                                </li>
+                                {% endif %}
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change
                                         Password </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Forget
-                                        Password </a></li>
-                            </ul>
+
                         </div>
                     </li>
                 </ul>
@@ -276,7 +278,7 @@
                                     <h4 class="dg">Name</h4>
                                     <input type="text" placeholder="Full Name *" class="form-control" name="name"
                                         value="{{vendor.name}}" required>
-                                        <h4 class="dg">Email</h4>
+                                    <h4 class="dg">Email</h4>
                                     <input type="email" placeholder="Email Address *" class="form-control" name="email"
                                         value="{{vendor.email}}" required>
 
@@ -285,7 +287,7 @@
                                     <h4 class="dg">Phone</h4>
                                     <input type="text" placeholder="Phone number" class="form-control" name="phone"
                                         value="{{vendor.phone}}" required>
-<h4 class="dg">Category</h4>
+                                    <h4 class="dg">Category</h4>
                                     <select name="category" class="form-select form-control text-black" required>
                                         <option value="{{vendor.category}}">Please choose a category </option>
                                         <option value="Bio">Bio</option>
@@ -350,6 +352,7 @@
                                                 padding-right: 0.5rem;
                                                 font-size: 16px;
                                             }
+
                                             .center {
                                                 margin-top: 3rem;
                                                 height: 100%;

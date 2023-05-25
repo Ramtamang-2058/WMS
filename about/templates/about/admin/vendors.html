@@ -180,7 +180,11 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
+                {% if request.user.is_superuser %}
+                <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                {% else %}
                 <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                {% endif %}
                 <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
 
 
@@ -225,14 +229,17 @@
                         <td class="py-1">
                           <img src="{{vendor.profile_image.url}}" alt="image" />
                         </td>
-                        <td><a href="{% url 'edit_vendor' vendor.id %}"> {{vendor.name}}</a> </td>
+                        <td><a href="{% url 'vendor_profile' vendor.id %}"> {{vendor.name}}</a> </td>
                         <td>
                           {{vendor.phone}}
                         </td>
                         <td> {{vendor.created_date}} </td>
                         <td> {{vendor.status}} </td>
-                        <td><button class="bg-gradient-success">Edit</button><button class="bg-gradient-danger"
-                            onclick="location.href='{% url 'delete' id=vendor.id %}'">Delete</button></td>
+                        <td><a href="{% url 'edit_vendor' vendor.id %}"><button
+                              class="bg-gradient-success">Edit</button></a>
+                          <button class="bg-gradient-danger"
+                            onclick="location.href='{% url 'delete' id=vendor.id %}'">Delete</button>
+                        </td>
                       </tr>
                       {% endfor %}
                     </tbody>

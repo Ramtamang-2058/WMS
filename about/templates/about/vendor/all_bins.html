@@ -176,8 +176,13 @@
               </a>
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
+                 {% if request.user.is_superuser %}
+                  <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                  {% else %}
                   <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                  {% endif %}
                   <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+</li>
 
 
                 </ul>
@@ -215,7 +220,7 @@
                     </thead>
                     <tbody>
                       {% for bin in bins %}
-                      <tr>
+                      <tr  id="myTr">
                         <td class="py-1">
                           {{ forloop.counter }}        </td>
                         <td> {{bin.location}}</td>
@@ -265,7 +270,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
     <!-- End custom js for this page -->
+    <script>
+      function myFunction() {
+  var input = document.getElementById("Search");
+  var filter = input.value.toLowerCase();
+  var nodes = document.getElementsByClassName('td');
 
+  for (i = 0; i < nodes.length; i++) {
+    if (nodes[i].innerText.toLowerCase().includes(filter)) {
+      nodes[i].style.display = "block";
+    } else {
+      nodes[i].style.display = "none";
+    }
+  }
+}
+</script>
    
   </body>
 </html>

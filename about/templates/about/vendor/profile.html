@@ -7,6 +7,72 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
+      {% if request.user.is_superuser %}
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-text d-flex flex-column">
+               <center> <span class="font-weight-bold mb-2">नेपाल सरकार</span></center>
+                <span class="text-secondary text-small">फोहोरमैला व्यवस्थापन मन्त्रालय</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <span class="menu-title">Dashboard</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Bins details</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bio' %}">Bio Bins</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bottle' %}">Bottle Bins</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Plastic Bins</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'vendors'%}">
+              <span class="menu-title ">Vendors</span>
+              <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+          </li>
+         
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <span class="menu-title">Tables</span>
+              <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+              <span class="menu-title">Settings</span>
+              <i class="menu-arrow"></i>
+              <i class="fa fa-gear menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                {% if request.user.is_superuser %}
+                <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                {% else %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                {% endif %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+
+
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      {% else %}
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -46,13 +112,14 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
               </ul>
             </div>
           </li>
         </ul>
       </nav>
+      {% endif %}
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">

@@ -60,8 +60,13 @@
               </a>
               <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
+                 {% if request.user.is_superuser %}
+                  <li class="nav-item"> <a class="nav-link" href="#"> My Detail </a></li>
+                  {% else %}
                   <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> My Detail </a></li>
+                  {% endif %}
                   <li class="nav-item"> <a class="nav-link" href="{% url 'change_password' %}"> Change Password </a></li>
+</li>
 
 
                 </ul>

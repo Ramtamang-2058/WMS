@@ -61,7 +61,6 @@ def admin_dashboard(request):
             expire_date__lt=now + timezone.timedelta(minutes=1),
             session_key__icontains='guest',
         ))
-        print(non_user_request_count_i)
         non_user_request_data.append(non_user_request_count_i)
         request_count_data = {
             'labels': labels,
@@ -117,6 +116,12 @@ def vendor_bins(request):
         # modify the distance of every bin and calculate level in percentage
         for bin in bins:
             real_distance = 56 - (int(bin['distance'])-15) # calculate real_distance
+            if real_distance < 15:
+                real_distance = 15
+            elif real_distance > 56:
+                real_distance = 56
+            else:
+                real_distance= real_distance
             level = ((real_distance / 56) * 100) # calculate level in percentage
             bin['distance'] = int(level) # update distance key to level value
 
@@ -160,12 +165,18 @@ def vendor_dashboard(request):
         # modify the distance of every bin and calculate level in percentage
         for bin in bins:
             real_distance = 56 - (int(bin['distance'])-15) # calculate real_distance
+            
+            real_distance = 56 - (int(bin['distance'])-15) # calculate real_distance
+            if real_distance < 15:
+                real_distance = 15
+            elif real_distance > 56:
+                real_distance = 56
+            else:
+                real_distance= real_distance
             level = ((real_distance / 56) * 100) # calculate level in percentage
             bin['distance'] = int(level) # update distance key to level value
         
-        print(bins)
         update_bins = bins.filter(distance__gt=50)
-        print(update_bins)
         context = {
             'bins': update_bins,
             'vendor': vendor
@@ -203,6 +214,7 @@ def delete(request, id):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, "You are successfully logout. ")
     return redirect('login')
 
 
@@ -284,49 +296,57 @@ def add_vendor(request):
 def edit_vendor(request, id):
     vendor = Vendor.objects.get(id=id)
     if request.method == 'POST':
+        # Update the vendor's profile and license images if provided
         profile_image = request.FILES.get('profile_image')
         license_image = request.FILES.get('license_image')
         if profile_image and license_image:
-            # save the profile image to the static folder
+            # Delete the previous profile and license images (optional)
+            if vendor.profile_image:
+                os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.profile_image))
+            if vendor.license_photo:
+                os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.license_photo))
+                
+            # Save the new profile image to the static folder
             profile_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/profile')
             if not os.path.exists(profile_dir):
                 os.makedirs(profile_dir)
             with open(os.path.join(profile_dir, profile_image.name), 'wb') as f:
                 for chunk in profile_image.chunks():
                     f.write(chunk)
-            # save the license image to the static folder
+                    
+            # Save the new license image to the static folder
             license_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/license')
             if not os.path.exists(license_dir):
                 os.makedirs(license_dir)
             with open(os.path.join(license_dir, license_image.name), 'wb') as f:
                 for chunk in license_image.chunks():
                     f.write(chunk)
-            name = request.POST.get('name')
-            email = request.POST.get('email')
-            phone = request.POST.get('phone')
-            dob = request.POST.get('dob')
-            permanent_address = request.POST.get('permanent_address')
-            current_address = request.POST.get('current_address')
-            password = request.POST.get('password')
-            vehicle_color = request.POST.get('vehicle_color')
-            vehicle_brand = request.POST.get('vehicle_brand')
-            vehicle_number = request.POST.get('vehicle_number')
-            category = request.POST.get('category')
-            user = User.objects.create_user(
-                username=phone, email=email, password=password)
-            vendor = Vendor(user=user, profile_image=f'static/images/profile/{profile_image.name}', category=category, name=name, email=email, phone=phone, dob=dob, permanent_address=permanent_address,
-                            current_address=current_address, license_photo=f'static/images/license/{license_image.name}', status="Active", vehicle_brand=vehicle_brand, vehicle_color=vehicle_color,
-                            vehicle_number=vehicle_number)
-            vendor.save()
-            messages.success(request, "Vendor Register Successfully.")
-            return redirect('vendors')
-        else:
-            messages.error(request, "Please upload both images.")
-            return redirect('vendor_edit')
+                    
+            # Update the vendor's information
+            vendor.profile_image = f'static/images/profile/{profile_image.name}'
+            vendor.license_photo = f'static/images/license/{license_image.name}'
+        
+        # Update other vendor fields
+        vendor.name = request.POST.get('name')
+        vendor.email = request.POST.get('email')
+        vendor.phone = request.POST.get('phone')
+        vendor.dob = request.POST.get('dob')
+        vendor.permanent_address = request.POST.get('permanent_address')
+        vendor.current_address = request.POST.get('current_address')
+        vendor.vehicle_color = request.POST.get('vehicle_color')
+        vendor.vehicle_brand = request.POST.get('vehicle_brand')
+        vendor.vehicle_number = request.POST.get('vehicle_number')
+        vendor.category = request.POST.get('category')
+        
+        vendor.save()
+        messages.success(request, "Vendor updated successfully.")
+        return redirect('vendors')
+    
     context = {
         'vendor': vendor
     }
     return render(request, 'about/admin/edit_vendor.html', context)
+
 
 
 
@@ -384,6 +404,22 @@ def vendor_profile(request):
             'show_notification': unread_notification_count > 0,
             'notification_count': unread_notification_count,
             'last_notifications': last_5_notifications,
+        }
+        return render(request, 'about/vendor/profile.html', context)
+    else:
+        return redirect('login')
+    
+
+
+def vendor_detail(request, id):
+    if request.user.is_superuser:
+        usr  = User.objects.get(id = request.user.id)
+        vendor = Vendor.objects.get(id=id)
+    
+        context = {
+            'user': usr,
+            'vendor': vendor,
+            
         }
         return render(request, 'about/vendor/profile.html', context)
     else:

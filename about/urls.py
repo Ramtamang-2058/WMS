@@ -31,6 +31,8 @@ urlpatterns = [
     path('map/route', views.view_map, name='map'),
     path('bins/all', views.vendor_bins, name="vendors_bins"),
     path('my/details', views.vendor_profile, name = 'profile'),
+    path('my/details/<int:id>', views.vendor_detail, name = 'vendor_profile'),
+
 
     #notification read
     path('mark-notification-as-read/<int:notification_id>/', views.mark_notification_as_read, name='mark_notification_as_read'),
