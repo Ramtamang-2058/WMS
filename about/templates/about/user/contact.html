@@ -1,180 +1,268 @@
 <!DOCTYPE html>
-
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
-<html lang="zxx">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Parsa | Portfolio Template</title>
+    <meta charset="utf-8">
+    <title>Integrated Waste Management System</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-  <!-- ** Plugins Needed for the Project ** -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="{% static 'visitors/plugins/bootstrap/bootstrap.min.css">
-  <!-- slick slider -->
-  <link rel="stylesheet" href="{% static 'visitors/plugins/slick/slick.css">
-  <!-- themefy-icon -->
-  <link rel="stylesheet" href="{% static 'visitors/plugins/themify-icons/themify-icons.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet -->
-  <link href="css/style.css" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <!-- preloader -->
-  <div class="preloader">
-    <div class="loader">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- /preloader -->
-
-<header class="navigation">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="index.html"><img class="img-fluid" src="images/logo.png" alt="parsa"></a>
-    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
-      aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse text-center" id="navogation">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown"
-            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Home
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="index.html">Homepage 1</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="contact.html">Contact</a>
-        </li>
-      </ul>
-     
-    </div>
-  </nav>
-</header>
-
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h2 class="mb-4">Contact Us</h2>
-        <img src="images/contact.jpg" alt="author" class="img-fluid w-100 mb-4">
-        <p class="mb-5">Strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream and, as I lie close to the earth, a thousand unknown plants are noticed by me.<br><br>When I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath of that universal love which bears and sustains.</p>
-        <form action="#" class="row">
-          <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" name="name" id="name" placeholder="Name">
-          </div>
-          <div class="col-lg-6">
-            <input type="email" class="form-control mb-4" name="email" id="email" placeholder="Email">
-          </div>
-          <div class="col-12">
-            <textarea name="message" id="message" class="form-control mb-4" placeholder="Message..."></textarea>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- instagram -->
-<section>
-  <div class="container-fluid px-0">
-    <div class="row no-gutters instagram-slider" id="instafeed" data-userId="4044026246"
-      data-accessToken="4044026246.1677ed0.8896752506ed4402a0519d23b8f50a17"></div>
-  </div>
-</section>
-<!-- /instagram -->
-
-<footer class="bg-secondary">
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <a href="index.html"><img src="images/logo.png" alt="persa" class="img-fluid"></a>
+    <!-- Topbar Start -->
+    <div class="container-fluid px-5 d-none d-lg-block">
+        <div class="row gx-5 py-3 align-items-center">
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-start">
+                    <i class="bi bi-phone-vibrate fs-1 text-primary me-2"></i>
+                    <h2 class="mb-0">+014 1245025</h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="index.html" class="navbar-brand ms-lg-5">
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">IWM</span>Solution</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-end">
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Address</h6>
-          <ul class="list-unstyled">
-            <li class="font-secondary text-dark">Sydney</li>
-            <li class="font-secondary text-dark">6 rip carl Avenue CA 90733</li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Contact Info</h6>
-          <ul class="list-unstyled">
-            <li class="font-secondary text-dark">Tel: +90 000 333 22</li>
-            <li class="font-secondary text-dark">Mail: exmaple@ymail.com</li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Follow</h6>
-          <ul class="list-inline d-inline-block">
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-facebook"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="text-center pb-3">
-    <p class="mb-0">Copyright ©<script>var CurrentYear = new Date().getFullYear()
-    document.write(CurrentYear)</script> a theme by  <a href="https://themefisher.com/">themefisher.com</a></p>
-  </div>
-</footer>
+    <!-- Topbar End -->
 
-<!-- jQuery -->
-<script src="{% static 'visitors/plugins/jQuery/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="{% static 'visitors/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- slick slider -->
-<script src="{% static 'visitors/plugins/slick/slick.min.js"></script>
-<!-- masonry -->
-<script src="{% static 'visitors/plugins/masonry/masonry.js"></script>
-<!-- instafeed -->
-<script src="{% static 'visitors/plugins/instafeed/instafeed.min.js"></script>
-<!-- smooth scroll -->
-<script src="{% static 'visitors/plugins/smooth-scroll/smooth-scroll.js"></script>
-<!-- headroom -->
-<script src="{% static 'visitors/plugins/headroom/headroom.js"></script>
-<!-- reading time -->
-<script src="{% static 'visitors/plugins/reading-time/readingTime.min.js"></script>
 
-<!-- Main Script -->
-<script src="js/script.js"></script>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-5">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none">
+            <h1 class="m-0 display-4 text-secondary"><span class="text-white">IWMS</span>Solution</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="product.html" class="nav-item nav-link">Product</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="blog.html" class="dropdown-item">Blog Grid</a>
+                        <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                        <a href="feature.html" class="dropdown-item">Features</a>
+                        <a href="team.html" class="dropdown-item">The Team</a>
+                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link active">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
 
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 bg-hero mb-5">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h1 class="display-1 text-white mb-md-4">Contact Us</h1>
+                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Home</a>
+                    <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="mx-auto text-center mb-5" style="max-width: 500px;">
+                <h6 class="text-primary text-uppercase">Contact Us</h6>
+                <h1 class="display-5">Please Feel Free To Contact Us</h1>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-7">
+                    <div class="bg-primary h-100 p-5">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <input type="text" class="form-control bg-light border-0 px-4" placeholder="Your Name" style="height: 55px;">
+                                </div>
+                                <div class="col-6">
+                                    <input type="email" class="form-control bg-light border-0 px-4" placeholder="Your Email" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control bg-light border-0 px-4" placeholder="Subject" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control bg-light border-0 px-4 py-3" rows="2" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-secondary w-100 py-3" type="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="bg-secondary h-100 p-5">
+                        <h2 class="text-white mb-4">Get In Touch</h2>
+                        <div class="d-flex mb-4">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="bi bi-geo-alt fs-4 text-white"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h5 class="text-white">Our Office</h5>
+                                <span class="text-white">123 Street, New York, USA</span>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="bi bi-envelope-open fs-4 text-white"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h5 class="text-white">Email Us</h5>
+                                <span class="text-white">info@example.com</span>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="bi bi-phone-vibrate fs-4 text-white"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h5 class="text-white">Call Us</h5>
+                                <span class="text-white">+014 1245025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-footer bg-primary text-white mt-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <h4 class="text-white mb-4">Get In Touch</h4>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-white me-2"></i>
+                                <p class="text-white mb-0">123 Street, New York, USA</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-white me-2"></i>
+                                <p class="text-white mb-0">info@example.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-white me-2"></i>
+                                <p class="text-white mb-0">+014 12450250</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-white mb-4">Quick Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>About Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-white mb-4">Popular Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>About Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-n5">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-secondary p-5">
+                        <h4 class="text-white">Newsletter</h4>
+                        <h6 class="text-white">Subscribe Our Newsletter</h6>
+                        <p>Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
+                                <button class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Integrated Waste Management System</a>. All Rights Reserved. Designed by <a class="text-secondary fw-bold" href="/">IWMS</a></p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>
