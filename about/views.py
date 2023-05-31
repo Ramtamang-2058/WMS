@@ -512,3 +512,12 @@ def change_password(request):
 #change success
 def change_success(request):
     return render(request, 'about/authentication/change_success.html')
+
+
+
+#for user home
+def home(request, lg='en'):
+    if lg == "en":
+        return render(request, 'about/user/index.html')
+    else:
+        return render(request, 'about/user/index.html')
