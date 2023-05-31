@@ -517,7 +517,9 @@ def change_success(request):
 
 #for user home
 def home(request, lg='en'):
+    print("adf")
+    print(request.GET)
     if lg == "en":
         return render(request, 'about/user/index.html')
-    else:
-        return render(request, 'about/user/index.html')
+    elif lg=="np":
+        return render(request, 'about/user/nepali.html')
