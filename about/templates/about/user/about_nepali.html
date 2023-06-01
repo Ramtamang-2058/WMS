@@ -66,7 +66,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-5">
-        <a href="index.html" class="navbar-brand d-flex d-lg-none">
+        <a href="#" class="navbar-brand d-flex d-lg-none">
             <h1 class="m-0 display-4 text-secondary"><span class="text-white">IWMS</span>Solution</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -74,7 +74,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
-                <a href="?lg=np" class="nav-item nav-link">होम</a>
+                <a href="/?lg=np" class="nav-item nav-link">होम</a>
+
                 <a href="{% url 'about'%}?lg=np" class="nav-item nav-link active">हाम्रो बारेमा</a>
                 <a href="{% url 'service'%}?lg=np" class="nav-item nav-link">हाम्रो सेवाहरू</a>
                 <a href="{% url 'toilet'%}?lg=np" class="nav-item nav-link">शौचालय हरू</a>
