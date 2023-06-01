@@ -533,3 +533,100 @@ def home(request, lg='en'):
             # Add other context variables if needed
         }
         return render(request, 'about/user/index.html', context)
+
+
+def user_about(request, lg='en'):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
+    if lg == 'np':
+        # Logic specific to 'np' request
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/about_nepali.html', context)
+    else:
+        # Logic for other cases
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/about.html', context)
+    
+
+def service(request, lg='en'):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
+    if lg == 'np':
+        # Logic specific to 'np' request
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service_nepali.html', context)
+    else:
+        # Logic for other cases
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service.html', context)
+    
+
+
+def dustbins(request, lg='en'):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
+    if lg == 'np':
+        # Logic specific to 'np' request
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service_nepali.html', context)
+    else:
+        # Logic for other cases
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service.html', context)
+
+
+
+def toilets(request, lg='en'):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
+    if lg == 'np':
+        # Logic specific to 'np' request
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service_nepali.html', context)
+    else:
+        # Logic for other cases
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/service.html', context)
+    
+
+def contact(request, lg='en'):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
+    if lg == 'np':
+        # Logic specific to 'np' request
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/contact_nepali.html', context)
+    else:
+        # Logic for other cases
+        context = {
+            'lg': lg,
+            # Add other context variables if needed
+        }
+        return render(request, 'about/user/contact.html', context)

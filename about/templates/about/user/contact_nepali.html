@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,13 +42,17 @@
             </div>
             <div class="col-lg-6">
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="index.html" class="navbar-brand ms-lg-5">
+                    <a href="/" class="navbar-brand ms-lg-5">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">IWM</span>Solution</h1>
                     </a>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="d-flex align-items-center justify-content-end">
+                   <a href="/?lg=np"> <h6>नेपाली | </a></h6> 
+                   <h6><a href="/?lg=en">English  &nbsp;</a></h6> 
+
+                   
                     <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -70,34 +74,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
-                <a href="?lg=en" class="nav-item nav-link active">Home</a>
-                <a href="{% url 'about'%}?lg=en" class="nav-item nav-link">About</a>
-                <a href="{% url 'service'%}?lg=en" class="nav-item nav-link">Service</a>
-                <a href="{% url 'toilet'%}?lg=en" class="nav-item nav-link">Find Toilet</a>
-                <a href="{% url 'bin'%}?lg=en" class="nav-item nav-link">Find Bins</a>
+                <a href="?lg=np" class="nav-item nav-link">होम</a>
+                <a href="{% url 'about'%}?lg=np" class="nav-item nav-link active">हाम्रो बारेमा</a>
+                <a href="{% url 'service'%}?lg=np" class="nav-item nav-link">हाम्रो सेवाहरू</a>
+                <a href="{% url 'toilet'%}?lg=np" class="nav-item nav-link">शौचालय हरू</a>
+                <a href="{% url 'bin'%}?lg=np" class="nav-item nav-link">डस्टबिन हरू</a>
 
-                <a href="{% url 'contact'%}?lg=en" class="nav-item nav-link">Contact</a>
-                <a href="{% url 'login'%}?lg=en" class="nav-item nav-link">Login</a>
-
+                
+                <a href="{% url 'contact'%}?lg=np" class="nav-item nav-link">हाम्रो सम्पर्क</a>
+                <a href="{% url 'login'%}?lg=np" class="nav-item nav-link">लग-इन
+                </a>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
 
-    <!-- Hero Start -->
-    <div class="container-fluid bg-primary py-5 bg-hero mb-5">
-        <div class="container py-5">
-            <div class="row justify-content-start">
-                <div class="col-lg-8 text-center text-lg-start">
-                    <h1 class="display-1 text-white mb-md-4">Contact Us</h1>
-                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Home</a>
-                    <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hero End -->
 
 
     <!-- Contact Start -->
@@ -170,20 +162,21 @@
 
 
     <!-- Footer Start -->
+   
     <div class="container-fluid bg-footer bg-primary text-white mt-5">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <h4 class="text-white mb-4">Get In Touch</h4>
+                            h4 class="text-white mb-4">सम्पर्कमा रहनुहोस्</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-white me-2"></i>
-                                <p class="text-white mb-0">123 Street, New York, USA</p>
+                                <p class="text-white mb-0">काठमाडौं, वाग्मती, नेपाल</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-white me-2"></i>
-                                <p class="text-white mb-0">info@example.com</p>
+                                <p class="text-white mb-0">iwms@org.com</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-white me-2"></i>
@@ -197,38 +190,37 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <h4 class="text-white mb-4">Quick Links</h4>
+                            <h4 class="text-white mb-4">द्रुत लिङ्कहरू</h4>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>About Us</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home होम</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रोबारे</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रो सेवाहरू</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रो प्रणाली</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>नयाँ ब्लग</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हामीलाई सम्पर्क गर्नुहोस</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <h4 class="text-white mb-4">Popular Links</h4>
+                            <h4 class="text-white mb-4">द्रुत लिङ्कहरू</h4>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>About Us</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home होम</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रोबारे</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रो सेवाहरू</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हाम्रो प्रणाली</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>नयाँ ब्लग</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>हामीलाई सम्पर्क गर्नुहोस</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mt-lg-n5">
                     <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-secondary p-5">
-                        <h4 class="text-white">Newsletter</h4>
-                        <h6 class="text-white">Subscribe Our Newsletter</h6>
-                        <p>Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
+                        <h4 class="text-white">प्रतिक्रिया</h4>
+                        <p>तपाईंको प्रतिक्रिया र चिन्ताहरू हाम्रो लागि बहुमूल्य छन्। यदि तपाईंसँग कुनै प्रतिक्रिया, सुझावहरू छन् भने, कृपया हाम्रो टोलीमा पुग्नुहोस्।</p>
                         <form action="">
                             <div class="input-group">
-                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                                <button class="btn btn-primary">Sign Up</button>
+                                <input type="text" class="form-control border-white p-3" placeholder="प्रविष्ट गर्नुहोस्">
+                                <button class="btn btn-primary">पेश गर्नुहोस्</button>
                             </div>
                         </form>
                     </div>
@@ -238,11 +230,9 @@
     </div>
     <div class="container-fluid bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Integrated Waste Management System</a>. All Rights Reserved. Designed by <a class="text-secondary fw-bold" href="/">IWMS</a></p>
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Integrated Waste Management System</a>. All Rights Reserved. Designed & Develop by <a class="text-secondary fw-bold" href="/">IWMS</a></p>
         </div>
     </div>
-    <!-- Footer End -->
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -263,3 +253,4 @@
 </body>
 
 </html>
+

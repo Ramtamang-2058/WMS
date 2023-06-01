@@ -81,13 +81,173 @@
                 <a href="{% url 'contact'%}?lg=en" class="nav-item nav-link">Contact</a>
                 <a href="{% url 'login'%}?lg=en" class="nav-item nav-link">Login</a>
 
-                </div>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
 
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                            <img class="w-100" src="{% static 'user/img/carousel-1.png' %}" alt="Image">
+                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
+                        <div class="text-start p-5" style="max-width: 900px;">
+                            <h3 class="text-white">Integrated Waste Management System</h3>
+                            <h1 class="display-1 text-white mb-md-4">Clean today, sustain tomorrow: Embrace waste management!</h1>
+
+                            
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
+                            <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{% static 'user/img/carousel-2.png' %}" alt="Image">
+                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
+                        <div class="text-start p-5" style="max-width: 900px;">
+                            <h3 class="text-white">Integrated Waste Management System</h3>
+                            <h1 class="display-1 text-white mb-md-4">Sanitation first, health and happiness forever!</h1>
+
+                            
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
+                            <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Banner Start -->
+    <div class="container-fluid banner mb-5">
+        <div class="container">
+            <div class="row gx-0">
+                <div class="col-md-6">
+                    <div class="bg-primary bg-vegetable d-flex flex-column justify-content-center p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Find Nearest Bin </h3>
+
+                        
+                        <p class="text-white">Navigate to the closest waste disposal bin with a simple click! Easily locate the nearest bin for proper waste disposal and contribute to a cleaner environment. </p>
+                        <a class="text-white fw-bold" href="">Find Near Me<i class="bi bi-arrow-right ms-2"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-secondary bg-fruit d-flex flex-column justify-content-center p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Find Nearest Public Toilet</h3>
+
+                        <p class="text-white">Discover the closest public toilet with just one click! Easily locate nearby restroom facilities for your convenience and peace of mind.</p>
+                        <a class="text-white fw-bold" href="">Find Near Me<i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Start -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid about pt-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="d-flex h-100 border border-5 border-primary border-bottom-0 pt-4">
+                        <img class="img-fluid mt-auto mx-auto" src="{% static 'user/img/about.png' %}">
+                    </div>
+                </div>
+                <div class="col-lg-6 pb-5">
+                    <div class="mb-3 pb-2">
+                        <h6 class="text-primary text-uppercase">About Us</h6>
+                        <h1 class="display-5">Smart Solutions. Cleaner Environment. Better Future</h1>
+                    </div>
+                    <p class="mb-4">At Integrated Waste Management System, we are dedicated to revolutionizing waste management practices through innovative and sustainable solutions. With a focus on efficiency, environmental impact reduction, and community engagement, we strive to transform waste management into a smarter, data-driven process.</p>
+                    <div class="row gx-5 gy-4">
+                        <div class="col-sm-6">
+                            <i class="fa fa-seedling display-1 text-secondary"></i>
+                            <h4>Waste Collection and Optimization</h4>
+                            <p class="mb-0">Efficient waste collection through advanced sensors and real-time monitoring. Minimizing overflow and maximizing efficiency with data-driven route optimization.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fa fa-award display-1 text-secondary"></i>
+                            <h4>Community Engagement and Participation</h4>
+                            <p class="mb-0">Empowering communities to actively participate in waste management. User-friendly apps for schedules, resources, and reporting. Building a sustainable future together.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Facts Start -->
+    <div class="container-fluid bg-primary facts py-5 mb-5">
+        <div class="container py-5">
+            <div class="row gx-5 gy-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex">
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fa fa-university fs-4 text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white">Local Government</h5>
+                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">145</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex">
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fa fa-users fs-4 text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white">Vendors</h5>
+                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">125</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex">
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fa fa-trash fs-4 text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white">Total Bins</h5>
+                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">4256</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex">
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fa fa-toilet fs-4 text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white">Public Toilets</h5>
+                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">123</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Facts End -->
+    
 
     <!-- Services Start -->
     <div class="container-fluid py-5">

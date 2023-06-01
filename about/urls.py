@@ -3,8 +3,15 @@ from . import views
 
 urlpatterns = [
     #user view for all
-    path('', views.home, name="home"),
+    path('toilet', views.toilets, name="toilet"),
+    path('contact', views.contact, name="contact"),
 
+    path('bin', views.dustbins, name="bin"),
+    path('about', views.user_about, name="about"),
+
+    path('service', views.service, name="service"),
+
+    path('', views.home, name="home"),
 
     #authentication
     path('login', views.user_login, name="login"),
