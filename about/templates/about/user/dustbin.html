@@ -81,324 +81,89 @@
                 <a href="{% url 'contact'%}?lg=en" class="nav-item nav-link">Contact</a>
                 <a href="{% url 'login'%}?lg=en" class="nav-item nav-link">Login</a>
 
+                </div>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
 
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                            <img class="w-100" src="{% static 'user/img/carousel-1.png' %}" alt="Image">
-                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
-                        <div class="text-start p-5" style="max-width: 900px;">
-                            <h3 class="text-white">Integrated Waste Management System</h3>
-                            <h1 class="display-1 text-white mb-md-4">Clean today, sustain tomorrow: Embrace waste management!</h1>
-
-                            
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{% static 'user/img/carousel-2.png' %}" alt="Image">
-                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
-                        <div class="text-start p-5" style="max-width: 900px;">
-                            <h3 class="text-white">Integrated Waste Management System</h3>
-                            <h1 class="display-1 text-white mb-md-4">Sanitation first, health and happiness forever!</h1>
-
-                            
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Carousel End -->
-
-
-    <!-- Banner Start -->
-    <div class="container-fluid banner mb-5">
-        <div class="container">
-            <div class="row gx-0">
-                <div class="col-md-6">
-                    <div class="bg-primary bg-vegetable d-flex flex-column justify-content-center p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">Find Nearest Bin </h3>
-
-                        
-                        <p class="text-white">Navigate to the closest waste disposal bin with a simple click! Easily locate the nearest bin for proper waste disposal and contribute to a cleaner environment. </p>
-                        <a class="text-white fw-bold" href="">Find Near Me<i class="bi bi-arrow-right ms-2"></i></a>
-
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="bg-secondary bg-fruit d-flex flex-column justify-content-center p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">Find Nearest Public Toilet</h3>
-
-                        <p class="text-white">Discover the closest public toilet with just one click! Easily locate nearby restroom facilities for your convenience and peace of mind.</p>
-                        <a class="text-white fw-bold" href="">Find Near Me<i class="bi bi-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner Start -->
-
-
-    <!-- About Start -->
-    <div class="container-fluid about pt-5">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="d-flex h-100 border border-5 border-primary border-bottom-0 pt-4">
-                        <img class="img-fluid mt-auto mx-auto" src="{% static 'user/img/about.png' %}">
-                    </div>
-                </div>
-                <div class="col-lg-6 pb-5">
-                    <div class="mb-3 pb-2">
-                        <h6 class="text-primary text-uppercase">About Us</h6>
-                        <h1 class="display-5">Smart Solutions. Cleaner Environment. Better Future</h1>
-                    </div>
-                    <p class="mb-4">At Integrated Waste Management System, we are dedicated to revolutionizing waste management practices through innovative and sustainable solutions. With a focus on efficiency, environmental impact reduction, and community engagement, we strive to transform waste management into a smarter, data-driven process.</p>
-                    <div class="row gx-5 gy-4">
-                        <div class="col-sm-6">
-                            <i class="fa fa-seedling display-1 text-secondary"></i>
-                            <h4>Waste Collection and Optimization</h4>
-                            <p class="mb-0">Efficient waste collection through advanced sensors and real-time monitoring. Minimizing overflow and maximizing efficiency with data-driven route optimization.</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fa fa-award display-1 text-secondary"></i>
-                            <h4>Community Engagement and Participation</h4>
-                            <p class="mb-0">Empowering communities to actively participate in waste management. User-friendly apps for schedules, resources, and reporting. Building a sustainable future together.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
+  
+      <!-- leaflet css  -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.4/dist/L.Control.Locate.min.css" />
+  
+      <style>
+          body {
+              margin: 0;
+              padding: 0;
+          }
+  
+          #map {
+              width: 100%;
+              height: 100vh;
+          }
+      </style>
+  </head>
+  
+  <body>
+  <body>
+      <div id="map"></div>
+  </body>
+  </html>
+  
+  <!-- leaflet js  -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  
+  
+  <script>
+    var planes = [
+     {% for dt in data %}
+                 ["{{dt.name}}", {{dt.latitude}}, {{dt.longitude}}],
+         {% endfor %}
+                 ];
+ 
+       var greenIcon = L.icon({
+          iconUrl: '{{path}}',
+         //  shadowUrl: '{% static 'map/leaf-shadow.png' %},
+ 
+          iconSize:     [25, 40], // size of the icon
+          //shadowSize:   [50, 64], // size of the shadow
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+ 
+     // Map initialization
+     var map = L.map('map').setView([28.3949, 84.1240], 8);
+ 
+     //osm layer
+     var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'   });
+     osm.addTo(map);
+ 
+ 
+ 
+     L.control.locate().addTo(map);
+     for (var i = 0; i < planes.length; i++) {
+       marker = new L.marker([planes[i][1],planes[i][2]], {icon: greenIcon})
+          .bindPopup(planes[i][0])
+          .addTo(map).openPopup();
+    }
+ 
+ 
+ 
+ </script>
 
 
-    <!-- Facts Start -->
-    <div class="container-fluid bg-primary facts py-5 mb-5">
-        <div class="container py-5">
-            <div class="row gx-5 gy-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-university fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">Local Government</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">145</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-users fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">Vendors</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">125</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-trash fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">Total Bins</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">4256</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-toilet fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">Public Toilets</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">123</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Facts End -->
+
     
-
-    <!-- Services Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <h6 class="text-primary text-uppercase">Services</h6>
-                        <h1 class="display-5">IWMS Services</h1>
-                    </div>
-                    <p class="mb-4">Revolutionizing waste management for a greener future. Smart technology, data-driven insights, and community engagement to optimize waste collection, promote recycling, and reduce environmental impact.</p>
-                    <a href="" class="btn btn-primary py-md-3 px-md-5">Contact Us</a>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-truck display-1 text-primary mb-3"></i>
-                        <h4>Waste Collection and Disposal</h4>
-                        <p class="mb-0">Timely and eco-friendly waste collection for residential and commercial needs, ensuring proper disposal and minimizing environmental impact.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-recycle display-1 text-primary mb-3"></i>
-                        <h4>Recycling Solutions</h4>
-                        <p class="mb-0">Comprehensive recycling services to maximize the recovery of recyclable materials, reducing landfill waste and promoting a circular economy.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-route display-1 text-primary mb-3"></i>
-                        <h4>Waste Audits & Consulting</h4>
-                        <p class="mb-0">Professional waste audits and customized consulting to optimize waste management practices and enhance sustainability.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-skull-crossbones display-1 text-primary mb-3"></i>
-                        <h4>Hazardous Waste Management</h4>
-                        <p class="mb-0">Safe handling, transportation, and disposal of hazardous materials, prioritizing environmental protection and regulatory compliance.
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-school display-1 text-primary mb-3"></i>
-                        <h4>Sustainability Education & Training</h4>
-                        <p class="mb-0">Engaging workshops and training sessions to promote waste reduction, recycling, and sustainable practices for individuals and organizations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Services End -->
-
-
-    <!-- Features Start -->
-    <div class="container-fluid bg-primary feature py-5 pb-lg-0 my-5">
-        <div class="container py-5 pb-lg-0">
-            <div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
-                <h4 class="text-uppercase text-secondary">Why</h4>
-                <h1 class="display-5 text-white">Why Integrated Waste Management System!!!</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-3">
-                    <div class="text-white mb-5">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="bi bi-check2-circle fs-4 text-white"></i>
-
-                        </div>
-                        <h4 class="text-white">Comprehensive Solutions</h4>
-                        <p class="mb-0">Our system offers a holistic approach to waste management, addressing all aspects from collection and disposal to recycling and sustainability education.</p>
-                    </div>
-                    <div class="text-white">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="bi bi-gear-wide-connected fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">Efficiency and Optimization</h4>
-                        <p class="mb-0">With advanced sensor technology, real-time monitoring, and data analytics, our system optimizes waste collection routes, minimizes travel time, and reduces fuel consumption. </p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="d-block bg-white h-100 text-center p-5 pb-lg-0">
-                        <p>Choose Integrated Waste Management System for comprehensive, efficient, and sustainable waste management solutions. Together, let's make a positive impact on the environment and build a cleaner, greener future.</p>
-                        <img class="img-fluid" src="{% static 'user/img/feature.png' %}" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="text-white mb-5">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-seedling fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">Environmental Impact Reduction</h4>
-                        <p class="mb-0">We prioritize environmental sustainability by promoting recycling, waste reduction, and proper disposal practices.</p>
-                    </div>
-                    <div class="text-white">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-bezier-curve fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">Technology-driven Approach</h4>
-                        <p class="mb-0">We leverage advanced technologies, such as sensor technology, data analytics, and machine learning, to provide innovative and efficient waste management solutions. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Features Start -->
-
-
-
-    <!-- Blog Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="mx-auto text-center mb-5" style="max-width: 500px;">
-                <h6 class="text-primary text-uppercase">Our Blog</h6>
-                <h1 class="display-5">Latest Articles From Our Blog Post</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-1.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">Modernizing Waste Collection Process with aim of Trash To Cash.</h4>
-                            <span class="text-white fw-bold">Jan 01, 2023</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-2.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">Focus on Hospitality of Nepal. We help to promote tourism with Cleaner and Greener City.</h4>
-                            <span class="text-white fw-bold">Feb 01, 2023</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-3.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">Categorized garbage bins are placed in all area. Why ?</h4>
-                            <span class="text-white fw-bold">Jan 01, 2050</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
-    
-
     <!-- Footer Start -->
     <div class="container-fluid bg-footer bg-primary text-white mt-5">
         <div class="container">
@@ -406,7 +171,7 @@
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <h4 class="text-white mb-4">Get In Touch</h4>
+                            <<h4 class="text-white mb-4">Get In Touch</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-white me-2"></i>
                                 <p class="text-white mb-0">Kathmandu, Bagmati, Nepal</p>
@@ -427,7 +192,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <h4 class="text-white mb-4">Quick Links</h4>
+                            <<h4 class="text-white mb-4">Quick Links</h4>
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Home</a>
                                 <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>About Us</a>
@@ -490,5 +255,3 @@
 </body>
 
 </html>
-
-

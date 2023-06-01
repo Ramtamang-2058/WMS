@@ -74,334 +74,195 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
-                <a href="/?lg=np" class="nav-item nav-link active">होम</a>
-                <a href="{% url 'about'%}?lg=np " class="nav-item nav-link">हाम्रो बारेमा</a>
-                <a href="service.html" class="nav-item nav-link">हाम्रो सेवाहरू</a>
-                <a href="service.html" class="nav-item nav-link">शौचालय हरू</a>
-                <a href="service.html" class="nav-item nav-link">डस्टबिन हरू</a>
+                <a href="?lg=np" class="nav-item nav-link active">होम</a>
+                <a href="{% url 'about'%}?lg=np" class="nav-item nav-link">हाम्रो बारेमा</a>
+                <a href="{% url 'service'%}?lg=np" class="nav-item nav-link">हाम्रो सेवाहरू</a>
+                <a href="{% url 'toilet'%}?lg=np" class="nav-item nav-link">शौचालय हरू</a>
+                <a href="{% url 'bin'%}?lg=np" class="nav-item nav-link">डस्टबिन हरू</a>
 
                 
-                <a href="सम्पर्क.html" class="nav-item nav-link">हाम्रो सम्पर्क</a>
-                <a href="सम्पर्क.html" class="nav-item nav-link">लग-इन
+                <a href="{% url 'contact'%}?lg=np" class="nav-item nav-link">हाम्रो सम्पर्क</a>
+                <a href="{% url 'login'%}?lg=np" class="nav-item nav-link">लग-इन
                 </a>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
+  
+      <!-- leaflet css  -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.4/dist/L.Control.Locate.min.css" />
+  
+      <style>
+          body {
+              margin: 0;
+              padding: 0;
+          }
+  
+          #map {
+              width: 100%;
+              height: 100vh;
+          }
+      </style>
+  </head>
+  
+  <body>
+  <body>
+      <div id="map"></div>
+  </body>
+  </html>
+  
+  <!-- leaflet js  -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  
+  
+  <script>
+    var planes = [
+     {% for dt in data %}
+                 ["{{dt.name}}", {{dt.latitude}}, {{dt.longitude}}],
+         {% endfor %}
+                 ];
+ 
+       var greenIcon = L.icon({
+          iconUrl: '{{path}}',
+         //  shadowUrl: '{% static 'map/leaf-shadow.png' %},
+ 
+          iconSize:     [25, 40], // size of the icon
+          //shadowSize:   [50, 64], // size of the shadow
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+ 
+     // Map initialization
+     var map = L.map('map').setView([28.3949, 84.1240], 8);
+ 
+     //osm layer
+     var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'   });
+     osm.addTo(map);
+ 
+ 
+ 
+     L.control.locate().addTo(map);
+     for (var i = 0; i < planes.length; i++) {
+       marker = new L.marker([planes[i][1],planes[i][2]], {icon: greenIcon})
+          .bindPopup(planes[i][0])
+          .addTo(map).openPopup();
+    }
+ 
+ 
+ 
+ </script>
+  </body>
+  </html>
 
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                            <img class="w-100" src="{% static 'user/img/carousel-1.png' %}" alt="Image">
-                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
-                        <div class="text-start p-5" style="max-width: 900px;">
-                            <h3 class="text-white">Integrated Waste Management System</h3>
-                            <h1 class="display-1 text-white mb-md-4">आज स्वच्छ, भोलि कायम राख्नुहोस्: फोहोर व्यवस्थापनलाई अँगाल्नुहोस्!</h1>
+  
+  
+    <style>
+      *{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+body{
+  font-family: montserrat;
+}
+nav{
+  background: #1f6fad;
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
 
-    
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5">सम्पर्क</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{% static 'user/img/carousel-2.png' %}" alt="Image">
-                    <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
-                        <div class="text-start p-5" style="max-width: 900px;">
-                            <h3 class="text-white">Integrated Waste Management System</h3>
-                            <h1 class="display-1 text-white mb-md-4">पहिलो, सरसफाई, स्वास्थ्य र सदाको लागि खुशी!</h1>
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+a.active,a:hover{
+  background: #1f6fad;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #1f6fad;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #1
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+    </style>
 
-                            
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">अन्वेषण</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5">सम्पर्क</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">अघिल्लो</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">पछिल्लो</span>
-            </button>
-        </div>
-    </div>
-    <!-- Carousel End -->
-
-
-    <!-- Banner Start -->
-    <div class="container-fluid banner mb-5">
-        <div class="container">
-            <div class="row gx-0">
-                <div class="col-md-6">
-                    <div class="bg-primary bg-vegetable d-flex flex-column justify-content-center p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">नजिकको बिन फेला पार्नुहोस्</h3>
-
-                        
-                        <p class="text-white">उचित फोहोर विसर्जनको लागि सजिलै नजिकको बिन पत्ता लगाउनुहोस् र सफा वातावरणमा योगदान पुर् याउँछ।                       </p>
-                        <a class="text-white fw-bold" href="">पत्ता लगाउनुहोस्<i class="bi bi-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="bg-secondary bg-fruit d-flex flex-column justify-content-center p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3"> नजिकको सार्वजनिक शौचालय फेला पार्नुहोस् </h3>
-
-                        <p class="text-white"> केवल एक क्लिकको साथ नजिकको सार्वजनिक शौचालय पत्ता लगाउनुहोस्!</p>
-                        <a class="text-white fw-bold" href="">पत्ता लगाउनुहोस्<i class="bi bi-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner Start -->
-
-
-    <!-- About Start -->
-    <div class="container-fluid about pt-5">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="d-flex h-100 border border-5 border-primary border-bottom-0 pt-4">
-                        <img class="img-fluid mt-auto mx-auto" src="{% static 'user/img/about.png' %}">
-                    </div>
-                </div>
-                <div class="col-lg-6 pb-5">
-                    <div class="mb-3 pb-2">
-                        <h6 class="text-primary text-uppercase">हाम्रो बारेमा</h6>
-                        <h1 class="display-5">स्मार्ट समाधान। स्वच्छ वातावरण। बेहतर भविष्य</h1>
-                    </div>
-                    <p class="mb-4">एन्टेग्रेटेड वेस्ट म्यानेजमेन्ट सिस्टममा, हामी नवीन र दिगो समाधानहरूको माध्यमबाट फोहोर व्यवस्थापन अभ्यासहरूमा क्रान्ति ल्याउन समर्पित छौं। दक्षता, वातावरणीय प्रभाव न्यूनीकरण र सामुदायिक संलग्नतामा ध्यान केन्द्रित गर्दै, हामी फोहोर व्यवस्थापनलाई स्मार्ट, डेटा-संचालित प्रक्रियामा रूपान्तरण गर्न प्रयास गर्दछौं।</p>
-                    <div class="row gx-5 gy-4">
-                        <div class="col-sm-6">
-                            <i class="fa fa-seedling display-1 text-secondary"></i>
-                            <h4>फोहोर संकलन र अनुकूलन</h4>
-                            <p class="mb-0">उन्नत सेन्सर र वास्तविक-समय निगरानी मार्फत कुशल फोहोर संकलन। डेटा-संचालित मार्ग अनुकूलनको साथ ओभरफ्लो कम गर्न र दक्षता अधिकतम गर्न।</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fa fa-award display-1 text-secondary"></i>
-                            <h4>सामुदायिक संलग्नता र सहभागिता</h4>
-                            <p class="mb-0">समुदायलाई फोहरमैला व्यवस्थापनमा सक्रिय सहभागिताका लागि सशक्त बनाउने । अनुसूची, संसाधनहरू, र रिपोर्टिङका लागि प्रयोगकर्ता-अनुकूल अनुप्रयोगहरू। एक साथ एक स्थायी भविष्य का निर्माण।</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-
-    <!-- Facts Start -->
-    <div class="container-fluid bg-primary facts py-5 mb-5">
-        <div class="container py-5">
-            <div class="row gx-5 gy-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-university fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">स्थानीय सरकार</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">145</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-users fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">साझेदारहरू</h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">125</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-trash fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">कुल डस्टबिन                            </h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">4256</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-toilet fs-4 text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="text-white">सार्वजनिक शौचालय                            </h5>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">123</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Facts End -->
-    
-
-    <!-- सेवाहरू Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="mb-3">
-                        <h6 class="text-primary text-uppercase">सेवाहरू</h6>
-                        <h1 class="display-5">IWMS सेवाहरू</h1>
-                    </div>
-                    <p class="mb-4">हरित भविष्यका लागि फोहरमैला व्यवस्थापनमा क्रान्ति ल्याउने । स्मार्ट टेक्नोलोजी, डाटा-संचालित अन्तर्दृष्टि, र सामुदायिक संलग्नता अपशिष्ट संग्रह अनुकूलन गर्न, रिसाइक्लिंग लाई बढावा दिन, र पर्यावरणीय प्रभाव कम गर्न ।</p>
-                    <a href="" class="btn btn-primary py-md-3 px-md-5">सम्पर्क Us</a>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-truck display-1 text-primary mb-3"></i>
-                        <h4>फोहर मैला संकलन र व्यवस्थापन</h4>
-                        <p class="mb-0">आवासीय र व्यावसायिक आवश्यकताहरूको लागि समयमै र पर्यावरण-अनुकूल फोहोर संकलन, उचित निपटान सुनिश्चित गर्न र वातावरणीय प्रभाव कम गर्न।</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-recycle display-1 text-primary mb-3"></i>
-                        <h4>पुन: प्रयोगको लागि समाधान</h4>
-                        <p class="mb-0">रिसाइकल गर्न मिल्ने सामग्रीको रिकभरीलाई अधिकतम बनाउन, ल्यान्डफिल फोहोर कम गर्न र अर्थतन्त्रलाई बढावा दिन व्यापक रिसाइक्लिङ्ग सेवा।</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-route display-1 text-primary mb-3"></i>
-                        <h4>फोहोर लेखापरीक्षण र परामर्श</h4>
-                        <p class="mb-0">फोहोर व्यवस्थापन अभ्यासहरू अनुकूलन गर्न र दिगोपन बृद्धि गर्न व्यावसायिक फोहोर लेखा परीक्षण र अनुकूलित परामर्श।</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-skull-crossbones display-1 text-primary mb-3"></i>
-                        <h4>खतराजनक फोहोर व्यवस्थापन</h4>
-                        <p class="mb-0">
-                            वातावरण संरक्षण र नियामक अनुपालनलाई प्राथमिकता दिँदै खतरनाक सामग्रीहरूको सुरक्षित ह्यान्डलिङ, ढुवानी र निपटान।
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light text-center p-5">
-                        <i class="fa fa-school display-1 text-primary mb-3"></i>
-                        <h4>दिगो शिक्षा र प्रशिक्षण
-                        </h4>
-                        <p class="mb-0">व्यक्ति र संगठनहरूको लागि फोहोर न्यूनीकरण, पुनर्चक्रण, र दिगो अभ्यासहरूलाई बढावा दिन कार्यशालाहरू र प्रशिक्षण सत्रहरू संलग्न गर्नुहोस्।</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- सेवाहरू End -->
-
-
-    <!-- Features Start -->
-    <div class="container-fluid bg-primary feature py-5 pb-lg-0 my-5">
-        <div class="container py-5 pb-lg-0">
-            <div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
-                <h4 class="text-uppercase text-secondary">किन ?</h4>
-                <h1 class="display-5 text-white">किन ई-एन्टेग्रेटेड फोहोर व्यवस्थापन प्रणाली ? !!!</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-3">
-                    <div class="text-white mb-5">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="bi bi-check2-circle fs-4 text-white"></i>
-
-                        </div>
-                        <h4 class="text-white">व्यापक समाधान</h4>
-                        <p class="mb-0">हाम्रो प्रणालीले फोहोर व्यवस्थापनको लागि एक समग्र दृष्टिकोण प्रदान गर्दछ, संग्रह र निपटानदेखि रिसाइक्लिंग र स्थिरता शिक्षासम्म सबै पक्षहरूलाई सम्बोधन गर्दछ।</p>
-                    </div>
-                    <div class="text-white">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="bi bi-gear-wide-connected fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">दक्षता र अनुकूलन</h4>
-                        <p class="mb-0">उन्नत सेन्सर टेक्नोलोजी, रियल-टाइम मोनिटरिङ र डाटा एनालिटिक्सको साथ, हाम्रो प्रणालीले फोहोर संकलन मार्गहरू अनुकूलन गर्दछ, यात्रा समय कम गर्दछ, र ईन्धन खपत कम गर्दछ। </p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="d-block bg-white h-100 text-center p-5 pb-lg-0">
-                        <p>व्यापक, कुशल र दिगो फोहर मैला व्यवस्थापन समाधानका लागि एकीकृत फोहरमैला व्यवस्थापन प्रणाली रोज्नुहोस् । सँगै, वातावरणमा सकारात्मक प्रभाव पारौं र स्वच्छ, हरित भविष्य निर्माण गरौं।</p>
-                        <img class="img-fluid" src="{% static 'user/img/feature.png' %}" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="text-white mb-5">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-seedling fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">वातावरणीय प्रभाव न्यूनीकरण</h4>
-                        <p class="mb-0">हामी रिसाइक्लिंग, फोहोर न्यूनीकरण र उचित निपटान अभ्यासहरूलाई बढावा दिएर वातावरणीय स्थिरतालाई प्राथमिकता दिन्छौं।</p>
-                    </div>
-                    <div class="text-white">
-                        <div class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-bezier-curve fs-4 text-white"></i>
-                        </div>
-                        <h4 class="text-white">टेक्नोलोजी-संचालित दृष्टिकोण</h4>
-                        <p class="mb-0">हामी नवीन र कुशल अपशिष्ट व्यवस्थापन समाधान हरू प्रदान गर्न सेन्सर टेक्नोलोजी, डाटा एनालिटिक्स, र मेशिन लर्निंग जस्ता उन्नत टेक्नोलोजीहरूको लाभ उठाउँछौं। </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Features Start -->
-
-
-
-    <!-- Blog Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="mx-auto text-center mb-5" style="max-width: 500px;">
-                <h6 class="text-primary text-uppercase">हाम्रो घोषणा र समाचार लेख</h6>
-                <h1 class="display-5">हाम्रो ब्लग पोस्टबाट नवीनतम लेखहरू</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-1.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">फोहोरबाट नगदमा फोहोर संकलन प्रक्रियालाई आधुनिकीकरण गर्ने ।</h4>
-                            <span class="text-white fw-bold">जनवरी 01, 2023</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-2.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">नेपालको आतिथ्यमा ध्यान दिनुहोस् । हामी क्लिनर र ग्रीनर सिटीको साथ पर्यटन प्रवर्द्धन गर्न मद्दत गर्दछौं।</h4>
-                            <span class="text-white fw-bold">फेब्रुअरी  01, 2023</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item position-relative overflow-hidden">
-                        <img class="img-fluid" src="{% static 'user/img/blog-3.jpg' %}" alt="">
-                        <a class="blog-overlay" href="">
-                            <h4 class="text-white">वर्गीकृत फोहोर डिब्बाहरू सबै क्षेत्रमा राखिएको छ। किन ?</h4>
-                            <span class="text-white fw-bold">जनवरी 01, 2022</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
-    
 
     <!-- Footer Start -->
    
@@ -411,7 +272,7 @@
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            h4 class="text-white mb-4">सम्पर्कमा रहनुहोस्</h4>
+                            <h4 class="text-white mb-4">सम्पर्कमा रहनुहोस्</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-white me-2"></i>
                                 <p class="text-white mb-0">काठमाडौं, वाग्मती, नेपाल</p>

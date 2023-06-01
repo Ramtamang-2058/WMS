@@ -16,7 +16,9 @@ from django.contrib.auth import update_session_auth_hash
 
 
 # user login
-def user_login(request):
+def user_login(request, lg="en"):
+    lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+
     if request.user.is_authenticated:
         if request.user.is_superuser:
             return redirect(reverse("admin_dashboard"))
@@ -36,10 +38,37 @@ def user_login(request):
                 messages.success(request, "Successfully login.!")
                 return redirect('vendor_dashboard')
         else:
-            messages.error(request, "Sorry, You are not Register Yet.")
-            return redirect('login')
+            if lg == 'np':
+                # Logic specific to 'np' request
+                context = {
+                    'lg': lg,
+                    # Add other context variables if needed
+                }
+                return render(request, 'about/authentication/login_nepali.html', context)
+            else:
+                # Logic for other cases
+                context = {
+                    'lg': lg,
+                    # Add other context variables if needed
+                }
+                messages.error(request, "Sorry, You are not Register Yet.")
+                return redirect('login')
     else:
-        return render(request, 'about/authentication/login.html')
+
+        if lg == 'np':
+            # Logic specific to 'np' request
+            context = {
+                'lg': lg,
+                # Add other context variables if needed
+            }
+            return render(request, 'about/authentication/login_nepali.html', context)
+        else:
+            # Logic for other cases
+            context = {
+                'lg': lg,
+                # Add other context variables if needed
+            }
+            return render(request, 'about/authentication/login.html', context)
 
 
 # admin dashboard
@@ -583,14 +612,14 @@ def dustbins(request, lg='en'):
             'lg': lg,
             # Add other context variables if needed
         }
-        return render(request, 'about/user/service_nepali.html', context)
+        return render(request, 'about/user/dustbin_nepali.html', context)
     else:
         # Logic for other cases
         context = {
             'lg': lg,
             # Add other context variables if needed
         }
-        return render(request, 'about/user/service.html', context)
+        return render(request, 'about/user/dustbin.html', context)
 
 
 
@@ -603,14 +632,14 @@ def toilets(request, lg='en'):
             'lg': lg,
             # Add other context variables if needed
         }
-        return render(request, 'about/user/service_nepali.html', context)
+        return render(request, 'about/user/toilet_nepali.html', context)
     else:
         # Logic for other cases
         context = {
             'lg': lg,
             # Add other context variables if needed
         }
-        return render(request, 'about/user/service.html', context)
+        return render(request, 'about/user/toilet.html', context)
     
 
 def contact(request, lg='en'):

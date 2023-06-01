@@ -1,125 +1,273 @@
 {% load static %}
-<!DOCTYPE html><!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>login and signup Form in HTML | CodingNepal</title>
-      <link rel="stylesheet" href="{% static 'authentication/login.css' %}">
-      <link rel="stylesheet" href="{% static 'assets/css/alert_message.css' %}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!DOCTYPE html>
+<html lang="en">
 
-      
+<head>
+    <meta charset="utf-8">
+    <title>Integrated Waste Management System</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-   <body>
-    
-      {% if messages %}
-    <div class="toast active">
-        <div class="toast-content">
-            {% for message in messages %}
-                {% if message.tags == 'error' %}
-                    <i class="fas fa-times check"></i>
-                    <div class="message error">
-                {% elif message.tags == 'success' %}
-                    <i class="fas fa-check check"></i>
-                    <div class="message success">
-                {% endif %}
-                    <span class="text text-1">{{ message.tags }}</span>
-                    <span class="text text-2">{{ message }}</span>
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid px-5 d-none d-lg-block">
+        <div class="row gx-5 py-3 align-items-center">
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-start">
+                    <i class="bi bi-phone-vibrate fs-1 text-primary me-2"></i>
+                    <h2 class="mb-0">+014 1245025</h2>
                 </div>
-            {% endfor %}
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="index.html" class="navbar-brand ms-lg-5">
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">IWM</span>Solution</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="/?lg=np">
+                        <h6>नेपाली |
+                    </a></h6>
+                    <h6><a href="/?lg=en">English &nbsp;</a></h6>
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-primary btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
-        <i class="fas fa-times close"></i>
-        <div class="progress active"></div>
     </div>
-{% endif %}
+    <!-- Topbar End -->
 
-      <div class="container">
-            <div class="title-text">
-                <a href="#" class="link">
-                   <img style="width: 150px;" src="{% static 'authentication/nepal.png' %}"/>
-                <!-- <div class="title login">
-                    Biomedical Equipment Management System
-                </div> -->
-                 <!-- <svg class="logo">
-                        <use xlink:href="./sprite.svg#icon-aid-kit"></use>
-                </svg> -->
-                </a>
-                <!-- <div class="title register">
-                    Biomedical Equipment Management System
-                </div> -->
-           </div>
-         <div class="form-container">
-            <div class="slide-controls">
-               <input type="radio" name="slide" id="login" checked>
-               <label for="login" class=" slide login" id="login">Welcome</label>
-               <div class="slider-tab"></div>
-            </div>
-            <div class="form-inner">
-               <form action="#" class="login" method="POST"> 
-             {% csrf_token %}
-                  <div class="field">
-                     <input type="text" name = "username" placeholder="Username/Phone" required>
-                  </div>
-                  <div class="field">
-                     <input name="password" type="password" placeholder="Password" required>
-                  </div>
-                  
-                  <div class="field btn signup-link">
-                     <div class="btn-layer"></div>
-                     <input type="submit" value="Login">
-                  </div>
-                  
-               </form>
 
-               <form action="#" class="field field__form">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-5">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none">
+            <h1 class="m-0 display-4 text-secondary"><span class="text-white">IWMS</span>Solution</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto py-0">
+                <a href="?lg=en" class="nav-item nav-link active">Home</a>
+                <a href="{% url 'about'%}?lg=en" class="nav-item nav-link">About</a>
+                <a href="{% url 'service'%}?lg=en" class="nav-item nav-link">Service</a>
+                <a href="{% url 'toilet'%}?lg=en" class="nav-item nav-link">Find Toilet</a>
+                <a href="{% url 'bin'%}?lg=en" class="nav-item nav-link">Find Bins</a>
 
-                  <div class="field__box mgT">
-                     <div class="field mgR"><a href="./Hospitalsignup.html">Hospital</a></div>
-                     <div class="field mgR"><a href="./signup.html">Engineer</a></div>
-                  </div>
-                     
-                  <!-- <div class="field btn mgT">
-                     <div class="btn-layer"></div>
-                     <input type="submit" value="Signup">
-                  </div> -->
-               </form>
+                <a href="{% url 'contact'%}?lg=en" class="nav-item nav-link">Contact</a>
+                <a href="{% url 'login'%}?lg=en" class="nav-item nav-link">Login</a>
 
             </div>
-         </div>
-      </div>
+        </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
 
-      <script>
-         const loginText = document.querySelector(".title-text .login");
-         const loginForm = document.querySelector("form.login");
-         const loginBtn = document.getElementById("login");
-         // const loginBtn = document.querySelector("label.login");
-         // const signupBtn = document.querySelector("label.register");
-         const signupBtn = document.getElementById("register");
-         const signupLink = document.querySelector("form .signup-link a");
-         const slider = document.querySelector(".slide-controls .slider-tab");
-         console.log(signupBtn);
-         console.log(loginForm);
-         console.log(loginBtn);
-         signupBtn.onclick = (()=>{
-           loginForm.style.marginLeft = "-50%";
-         //   loginText.style.marginLeft = "-50%";
-           slider.style.left="50%";
-           console.log("register clicked");
-         });
-         loginBtn.onclick = (()=>{
-           loginForm.style.marginLeft = "0%";
-         //   loginText.style.marginLeft = "0%";
-           slider.style.left="0%";
+    <section class="vh-100"  style="background-color: #f8f5f5;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
 
-         });
-         signupLink.onclick = (()=>{
-           signupBtn.click();
-           return false;
-         });
-      </script>
-          <script src="{% static 'assets/js/alert_message.js' %}"></script>
-   </body>
+                            <h3 class="mb-5">Sign in</h3>
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="typeEmailX-2" class="form-control text-dark form-control-lg"
+                                        name="username" required />
+                                    <label class="text-dark" for="typeEmailX-2">Phone/Username</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="typePasswordX-2"
+                                        class="form-control text-dark form-control-lg" name="password" required />
+                                    <label class="text-dark" for="typePasswordX-2">System Password</label>
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-start mb-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                    <label class="form-check-label" for="form1Example3"> Remember password </label>
+                                </div>
+
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-footer bg-primary text-white mt-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <<h4 class="text-white mb-4">Get In Touch</h4>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-white me-2"></i>
+                                <p class="text-white mb-0">Kathmandu, Bagmati, Nepal</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-white me-2"></i>
+                                <p class="text-white mb-0">iwms@org.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-white me-2"></i>
+                                <p class="text-white mb-0">+014 12450250</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-secondary btn-square rounded-circle" href="#"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <<h4 class="text-white mb-4">Quick Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Home</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>About Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our
+                                    Services</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact
+                                    Us</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-white mb-4">Popular Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Home</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>About Us</a>
+                                <a class="text-white mb-2" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Our
+                                    Services</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
+                                <a class="text-white mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
+                                <a class="text-white" href="#"><i class="bi bi-arrow-right text-white me-2"></i>Contact
+                                    Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-n5">
+                    <div
+                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-secondary p-5">
+                        <h4 class="text-white">Feedback</h4>
+                        <p>Your feedback and concerns are valuable to us.If you have any feedback, suggestions, please
+                            reach out to our team.</p>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control border-white p-3" placeholder="Enter Text">
+                                <button class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Integrated Waste Management System</a>.
+                All Rights Reserved. Designed & Develop by <a class="text-secondary fw-bold" href="/">IWMS</a></p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'user/js/main.js' %}"></script>
+    <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.getElementById("login");
+        // const loginBtn = document.querySelector("label.login");
+        // const signupBtn = document.querySelector("label.register");
+        const signupBtn = document.getElementById("register");
+        const signupLink = document.querySelector("form .signup-link a");
+        const slider = document.querySelector(".slide-controls .slider-tab");
+        console.log(signupBtn);
+        console.log(loginForm);
+        console.log(loginBtn);
+        signupBtn.onclick = (() => {
+            loginForm.style.marginLeft = "-50%";
+            //   loginText.style.marginLeft = "-50%";
+            slider.style.left = "50%";
+            console.log("register clicked");
+        });
+        loginBtn.onclick = (() => {
+            loginForm.style.marginLeft = "0%";
+            //   loginText.style.marginLeft = "0%";
+            slider.style.left = "0%";
+
+        });
+        signupLink.onclick = (() => {
+            signupBtn.click();
+            return false;
+        });
+    </script>
+    <script src="{% static 'assets/js/alert_message.js' %}"></script>
+</body>
+
 </html>
