@@ -607,16 +607,21 @@ def dustbins(request, lg='en'):
     lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
 
     if lg == 'np':
+        dustbins = DataR.objects.values('latitude', 'longitude', 'location').distinct()
         # Logic specific to 'np' request
         context = {
             'lg': lg,
+            'data': dustbins
             # Add other context variables if needed
         }
         return render(request, 'about/user/dustbin_nepali.html', context)
     else:
+        dustbins = DataR.objects.values('latitude', 'longitude', 'location').distinct()
+
         # Logic for other cases
         context = {
             'lg': lg,
+            'data': dustbins
             # Add other context variables if needed
         }
         return render(request, 'about/user/dustbin.html', context)
@@ -627,16 +632,20 @@ def toilets(request, lg='en'):
     lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
 
     if lg == 'np':
+        toilets = Toilet.objects.all()
         # Logic specific to 'np' request
         context = {
             'lg': lg,
+            'data': toilets
             # Add other context variables if needed
         }
         return render(request, 'about/user/toilet_nepali.html', context)
     else:
         # Logic for other cases
+        toilets = Toilet.objects.all()
         context = {
             'lg': lg,
+            'data': toilets
             # Add other context variables if needed
         }
         return render(request, 'about/user/toilet.html', context)
@@ -677,5 +686,4 @@ def contact(request, lg='en'):
         }
         return render(request, 'about/user/contact.html', context)
     
-
 

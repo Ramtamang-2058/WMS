@@ -130,7 +130,7 @@
                  ];
  
        var greenIcon = L.icon({
-          iconUrl: '{{path}}',
+          iconUrl: '{% static 'user/img/toilet_icon.png' %}',
          //  shadowUrl: '{% static 'map/leaf-shadow.png' %},
  
           iconSize:     [25, 40], // size of the icon
@@ -141,7 +141,28 @@
       });
  
      // Map initialization
-     var map = L.map('map').setView([28.3949, 84.1240], 8);
+     var map = L.map('map');
+
+// Get the user's location using Geolocation API
+navigator.geolocation.getCurrentPosition(function(position) {
+  var userLat = position.coords.latitude;
+  var userLng = position.coords.longitude;
+
+  // Set the map's initial view to the user's location
+  map.setView([userLat, userLng], 15); // Adjust the zoom level as needed
+
+  // Add other map layers, markers, etc. as needed
+
+}, function(error) {
+  // Handle error if user's location cannot be retrieved
+
+  // Set a default view if user's location is not available
+  map.setView([28.3949, 84.1240], 8); // Set your desired default center and zoom level
+
+  // Add other map layers, markers, etc. as needed
+});
+
+
  
      //osm layer
      var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
