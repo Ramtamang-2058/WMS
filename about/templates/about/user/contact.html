@@ -110,7 +110,8 @@
             <div class="row g-0">
                 <div class="col-lg-7">
                     <div class="bg-primary h-100 p-5">
-                        <form>
+                        <form action="" mehtod="POST">
+                            {% csrf_token %}
                             <div class="row g-3">
                                 <div class="col-6">
                                     <input type="text" class="form-control bg-light border-0 px-4" placeholder="Your Name" style="height: 55px;">
@@ -140,7 +141,7 @@
                             </div>
                             <div class="ps-3">
                                 <h5 class="text-white">Our Office</h5>
-                                <span class="text-white">123 Street, New York, USA</span>
+                                <span class="text-white">Kathmandu, Bagmati, Nepal</span>
                             </div>
                         </div>
                         <div class="d-flex mb-4">
@@ -176,14 +177,14 @@
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <<h4 class="text-white mb-4">Get In Touch</h4>
+                            <h4 class="text-white mb-4">Get In Touch</h4>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-white me-2"></i>
-                                <p class="text-white mb-0">123 Street, New York, USA</p>
+                                <p class="text-white mb-0">Kathmandu, Bagmati, Nepal</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-white me-2"></i>
-                                <p class="text-white mb-0">info@example.com</p>
+                                <p class="text-white mb-0">info@iwms.com</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-white me-2"></i>

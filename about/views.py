@@ -644,8 +644,17 @@ def toilets(request, lg='en'):
 
 def contact(request, lg='en'):
     lg = request.GET.get('lg', '')  # Assuming 'lg' is obtained from the request
+    
 
     if lg == 'np':
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            address = request.POST.get('address')
+            message = request.POST.get('message')
+            feedback = Feedback(name=name, email=email, address=address, message=message)
+            feedback.save()
+            messages.success(request, "हामीलाई सम्पर्क गर्नु भएकोमा धन्यवाद")
         # Logic specific to 'np' request
         context = {
             'lg': lg,
@@ -653,9 +662,20 @@ def contact(request, lg='en'):
         }
         return render(request, 'about/user/contact_nepali.html', context)
     else:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            address = request.POST.get('address')
+            message = request.POST.get('message')
+            feedback = Feedback(name=name, email=email, address=address, message=message)
+            feedback.save()
+            messages.success(request, "Thank you for Contacting Us.")
         # Logic for other cases
         context = {
             'lg': lg,
             # Add other context variables if needed
         }
         return render(request, 'about/user/contact.html', context)
+    
+
+
