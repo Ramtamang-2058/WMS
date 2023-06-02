@@ -687,3 +687,10 @@ def contact(request, lg='en'):
         return render(request, 'about/user/contact.html', context)
     
 
+
+def admin_feedback(request):
+    feedbacks = Feedback.objects.all()
+    context = {
+        'feedbacks': feedbacks
+    }
+    return render(request, 'about/admin/feedback.html', context)

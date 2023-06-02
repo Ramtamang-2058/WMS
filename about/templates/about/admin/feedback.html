@@ -46,11 +46,11 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{vendor.profile_image.url}}" alt="image">
+                  <img src="{% static 'assets/images/faces/face1.jpg' %}" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">{{vendor.name}}</p>
+                  <p class="mb-1 text-black">System Administrator</p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -134,8 +134,13 @@
                             </div>
               </a>
             </li>
-           
-            <!-- <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login'  %}">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Bins details</span>
                 <i class="menu-arrow"></i>
@@ -143,30 +148,30 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bio' %}">Plastic Bins</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bottle' %}">Glass Bins</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Bio Bins</a></li
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bio' %}">Bio Bins</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Bottle' %}">Bottle Bins</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'bins' 'Plastic' %}">Plastic Bins</a></li
                 </ul>
               </div>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'vendor_dashboard'%}">
-                <span class="menu-title">Full Bins</span>
-                <i class="mdi mdi-remote menu-icon"></i>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'vendors'%}">
+                <span class="menu-title">Vendors</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'vendors_bins' %}">
-                <span class="menu-title">All Bins</span>
-                <i class="mdi mdi-backburger menu-icon"></i>
-              </a>
-            </li>
+                <a class="nav-link" href="{% url 'feedback'%}">
+                  <span class="menu-title">Feedbacks</span>
+                  <i class="mdi mdi-messages menu-icon"></i>
+                </a>
+              </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'map' %}">
-                <span class="menu-title">Map and Route</span>
-                <i class="mdi mdi-google-maps menu-icon"></i>
-              </a>
-            </li>
+                <a class="nav-link" href="{% url 'feedback'%}">
+                  <span class="menu-title">Feedbacks</span>
+                  <i class="mdi mdi-messages menu-icon"></i>
+                </a>
+              </li>
            
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
@@ -194,11 +199,11 @@
        <div class="main-panel">
         <div class="content-wrapper">
           <div class="page-header">
-            <h3 class="page-title"> Bins Table </h3>
+            <h3 class="page-title"> Feedback Table </h3>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">List</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Bins tables</li>
+                <li class="breadcrumb-item active" aria-current="page">feedback tables</li>
               </ol>
             </nav>
           </div>
@@ -206,28 +211,31 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Bins Table</h4>
+                  <h4 class="card-title">Feedback Table</h4>
                   </p>
                   <table class="table table-striped">
                     <thead>
                       <tr>
                         <th># </th>
-                        <th>Location</th>
-                        <th>Volume</th>
-                        <th> Level </th>
-                        <th> Last Active Date/Time</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th> Location </th>
+                        <th> Message</th>
+                        <th> Report Time</th>
+
                       </tr>
                     </thead>
                     <tbody>
-                      {% for bin in bins %}
-                      <tr  id="myTr">
+                      {% for feedback in feedbacks %}
+                      <tr id="myTr">
                         <td class="py-1">
                           {{ forloop.counter }}        </td>
-                        <td> {{bin.location}}</td>
-                        <td>
-{{bin.volume}}                        </td>
-                        <td> {{bin.level}} %</td>
-                        <td>{{bin.created_date}}</td>
+                        <td> {{feedback.name}}</td>
+                        <td>{{feedback.email}}                       </td>
+                        <td> {{feedback.address}} </td>
+                        <td>{{feedback.message}}</td>
+                        <td>{{feedback.created_date}}</td>
+
                         
                       {% endfor %}
                     </tbody>
@@ -270,21 +278,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
     <!-- End custom js for this page -->
-    <script>
-      function myFunction() {
-  var input = document.getElementById("Search");
-  var filter = input.value.toLowerCase();
-  var nodes = document.getElementsByClassName('td');
 
-  for (i = 0; i < nodes.length; i++) {
-    if (nodes[i].innerText.toLowerCase().includes(filter)) {
-      nodes[i].style.display = "block";
-    } else {
-      nodes[i].style.display = "none";
-    }
-  }
-}
-</script>
    
   </body>
 </html>

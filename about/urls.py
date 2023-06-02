@@ -21,6 +21,7 @@ urlpatterns = [
 
     #administrator 
     path('dashboard/admin', views.admin_dashboard,  name="admin_dashboard"),
+    path('dashboard/feedback', views.admin_feedback,  name="feedback"),
     path('dashboard/vendor', views.vendor_dashboard, name="vendor_dashboard"),
     path('vendors/list', views.vendor, name="vendors"),
     path('dashboard/bins/<str:category_name>', views.bins_view, name="bins"),

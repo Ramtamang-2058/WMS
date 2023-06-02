@@ -90,6 +90,8 @@ class Feedback(models.Model):
     email = models.EmailField(null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
 
     def __str__(self):
         return self.name
