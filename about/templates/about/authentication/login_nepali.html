@@ -62,7 +62,25 @@
         </div>
     </div>
     <!-- Topbar End -->
-
+    {% if messages %}
+    <div class="toast active">
+      <div class="toast-content">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <i class="fas fa-times check"></i>
+        {% elif message.tags == 'success' %}
+        <i class="fas fa-check check"></i>
+        {% endif %}
+        <div class="message">
+          <span class="text text-1">{{ message.tags }}</span>
+          <span class="text text-2">{{ message }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <i class="fas fa-times close"></i>
+      <div class="progress active"></div>
+    </div>
+    {% endif %}
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-5">
@@ -120,7 +138,13 @@
                                     <label class="form-check-label" for="form1Example3"> पासवर्ड सम्झनुहोस्
                                     </label>
                                 </div>
-
+                                {% if messages %}
+                                <div class="form-check d-flex justify-content-start mb-4">
+                                    {% for message in messages %}
+                                    <p class="bg-danger"> {{message}}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                                 <button class="btn btn-primary btn-lg btn-block" type="submit">लग - इन
                                 </button>
 
@@ -220,6 +244,8 @@
 
 <!-- Template Javascript -->
 <script src="{% static 'user/js/main.js' %}"></script>
+<script src="{% static 'assets/js/alert_message.js' %}"></script>
+
 </body>
 
 </html>
