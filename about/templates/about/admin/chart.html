@@ -17,10 +17,11 @@
             data: {
                 labels: [],
                 datasets: [{
-                    label: 'Time History of Bin',
+                    label: 'Line Chart Example',
                     data: [],
-                    fill: false,
+                    fill: true,
                     borderColor: 'rgba(0, 123, 255, 1)',
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
                     tension: 0.1
                 }]
             },
@@ -31,15 +32,24 @@
                         display: true,
                         title: {
                             display: true,
-                            text: 'X-Level'
+                            text: 'X- Service Time'
                         }
                     },
                     y: {
                         display: true,
                         title: {
                             display: true,
-                            text: 'Y-Service Time'
+                            text: 'Y-Level of Waste'
                         }
+                    }
+                },
+                plugins: {
+                    shadow: {
+                        enabled: true,
+                        color: 'rgba(0, 0, 0, 0.3)',
+                        blur: 10,
+                        offsetX: 5,
+                        offsetY: 5
                     }
                 }
             }
@@ -65,14 +75,14 @@
                         display: true,
                         title: {
                             display: true,
-                            text: 'X- Level of Waste'
+                            text: 'X- Service Time '
                         }
                     },
                     y: {
                         display: true,
                         title: {
                             display: true,
-                            text: 'Y-Service Time'
+                            text: 'Y- Level of Waste'
                         }
                     }
                 }
