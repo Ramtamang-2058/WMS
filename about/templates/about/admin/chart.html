@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Line and Bar Chart</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="lineChart"></canvas>
+    <canvas id="barChart"></canvas>
+
+    <script>
+        const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineChartCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Line Chart Example',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'X-Axis'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Y-Axis'
+                        }
+                    }
+                }
+            }
+        });
+
+        const barChartCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barChartCtx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Bar Chart Example',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'X-Axis'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Y-Axis'
+                        }
+                    }
+                }
+            }
+        });
+
+        const chartId = {{ chart_id }};  // Replace with the actual chart ID
+        const socket = new WebSocket(`ws://localhost:8000/ws/data/${chartId}/`);
+        socket.onopen = function () {
+            console.log('WebSocket connection is open');
+        };
+
+        socket.onmessage = function(event) {
+            const dataArray = JSON.parse(event.data);
+
+            // Iterate over the dataArray
+            for (let i = 0; i < dataArray.length; i++) {
+                const data = dataArray[i];
+                const xValue = data.x; // Parse and format the date
+                const yValue = parseInt(data.y);
+
+                // Update line chart
+                lineChart.data.labels.push(xValue);
+                lineChart.data.datasets[0].data.push(yValue);
+                lineChart.update();
+
+                // Update bar chart
+                barChart.data.labels.push(xValue);
+                barChart.data.datasets[0].data.push(yValue);
+                barChart.update();
+            }
+        };
+
+        socket.onclose = function(event) {
+            console.log('WebSocket connection is closed');
+        };
+
+        socket.onerror = function (error) {
+            console.error('WebSocket error:', error);
+        };
+    </script>
+</body>
+</html>

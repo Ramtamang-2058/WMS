@@ -222,7 +222,7 @@
                       <tr id="myTr">
                         <td class="py-1">
                           {{ forloop.counter }}        </td>
-                        <td> {{bin.location}}</td>
+                        <td><a href="{% url 'chart' bin.latitude %}"> {{bin.location}}</a></td>
                         <td>
 {{bin.volume}}                        </td>
                         <td> {{bin.distance}} </td>

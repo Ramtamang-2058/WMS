@@ -694,3 +694,11 @@ def admin_feedback(request):
         'feedbacks': feedbacks
     }
     return render(request, 'about/admin/feedback.html', context)
+
+
+
+def view_dustbin(request, latitude):
+    context = {
+        'chart_id': latitude
+    }
+    return render(request, 'about/admin/chart.html', context)

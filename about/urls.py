@@ -25,6 +25,7 @@ urlpatterns = [
     path('dashboard/vendor', views.vendor_dashboard, name="vendor_dashboard"),
     path('vendors/list', views.vendor, name="vendors"),
     path('dashboard/bins/<str:category_name>', views.bins_view, name="bins"),
+    path('bin/view/<str:latitude>', views.view_dustbin, name="chart"),
     #register vendor
     path('dashboard/vendor/add', views.add_vendor, name='add_vendor'),
     path('dashboard/vendor/edit/<int:id>', views.edit_vendor, name='edit_vendor'),

@@ -1,88 +1,54 @@
-import asyncio
-import json
-from django.contrib.sessions.models import Session
-from django.utils import timezone
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.layers import get_channel_layer
-from asgiref.sync import sync_to_async, async_to_sync
-class TrafficConsumer(AsyncWebsocketConsumer):
-    async def connect(self):
-        await self.channel_layer.group_add(
-            'request_count',
-            self.channel_name,
-        )
-        await self.accept()
-        labels = []
-        user_request_data = []
-        non_user_request_data = []
-        for i in range(5):
-            now = timezone.localtime() - timezone.timedelta(minutes=5 - i)
-            labels.append(now.strftime('%H:%M:%S'))
-            user_request_count_i = len(Session.objects.filter(expire_date__gte=now, expire_date__lt=now + timezone.timedelta(minutes=1), 
-                                                              session_key__contains='_auth_user_id',
-            ))
-            user_request_data.append(user_request_count_i)
-            non_user_request_count_i = len(Session.objects.filter(
-                expire_date__gte=now,
-                expire_date__lt=now + timezone.timedelta(minutes=1),
-                session_key__icontains='guest',
-            ))
-            non_user_request_data.append(non_user_request_count_i)
-        request_count_data = {
-            'labels': labels,
-            'datasets': [
-                {
-                    'label': 'User Requests',
-                    'data': user_request_data,
-                    'borderColor': 'rgb(255, 99, 132)',
-                    'fill': False,
-                },
-                {
-                    'label': 'Non-User Requests',
-                    'data': non_user_request_data,
-                    'borderColor': 'rgb(54, 162, 235)',
-                    'fill': False,
-                },
-            ],
-        }
-        await self.send(text_data=json.dumps(request_count_data))
+import json
+from .models import DataR
+from channels.db import database_sync_to_async
 
+
+class TimeSeriesConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        # Add the consumer to a specific channel group based on the chart ID
+        self.chart_id = self.scope['url_route']['kwargs']['chart_id']
+        self.group_name = f'chart_group_{self.chart_id}'
+
+        await self.channel_layer.group_add(self.group_name, self.channel_name)
+        await self.accept()
+
+        # Send initial chart data to the connected client
+        await self.send_initial_chart_data()
 
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard(
-            'request_count',
-            self.channel_name,
-        )
+        # Remove the consumer from the channel group
+        await self.channel_layer.group_discard(self.group_name, self.channel_name)
 
-    async def update_request_count(self, event):
-        """
-        Receive request count update from TrafficMiddleware
-        """
-        request_count_data = event['request_count_data']
-        await self.send(text_data=json.dumps(request_count_data))
+    async def receive(self, text_data):
+        # Handle incoming data, e.g., update the chart
+        pass
 
-    def get_request_count():
-        now = timezone.localtime()
-        last_five_minutes = now - timezone.timedelta(minutes=5)
-        user_request_count = len(Session.objects.filter(
-            expire_date__gte=last_five_minutes,
-            session_key__contains='_auth_user_id',
-            ))
-        non_user_request_count = len(Session.objects.filter(
-            expire_date__gte=last_five_minutes,
-            session_key__icontains='guest',
-            ))
-        return user_request_count, non_user_request_count
+    @database_sync_to_async
+    def get_chart_data(self):
+        data = DataR.objects.filter(latitude=self.chart_id).values(
+            'distance',
+            'created_date'
+        ).order_by('-id')[:10]
 
-    # async def send_request_count_data(self):
-    #     """
-    #     Send initial request count data to client
-    #     """
-        
+        chart_data = []
+        for item in data:
+            chart_data.append({
+                'x': item['created_date'].strftime('%Y-%m-%dT%H:%M:%S'),
+                'y': item['distance']
+            })
 
-    async def update_request_count_data(self):
-        """
-        Send updated request count data to clients every minute
-        """
-        while True:
-            user_request_count, non_user_request_count = await self.get_request_count
+        return chart_data
+
+    async def send_initial_chart_data(self):
+        chart_data = await self.get_chart_data()
+
+
+        await self.send(json.dumps(chart_data))
+
+    async def chart_update(self, event):
+        # Send the updated chart data to the connected clients
+        chart_id = event['chart_id']
+        chart_data = await self.get_chart_data()
+
+        await self.send(json.dumps(chart_data))
