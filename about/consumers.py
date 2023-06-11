@@ -29,7 +29,7 @@ class TimeSeriesConsumer(AsyncWebsocketConsumer):
         data = DataR.objects.filter(latitude=self.chart_id).values(
             'distance',
             'created_date'
-        ).order_by('-id')[:10]
+        ).order_by('-id')[:50]
 
         chart_data = []
         for item in data:
