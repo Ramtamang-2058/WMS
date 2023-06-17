@@ -73,43 +73,19 @@ def user_login(request, lg="en"):
 
 # admin dashboard
 def admin_dashboard(request):
-    labels = []
-    user_request_data = []
-    non_user_request_data = []
-    for i in range(5):
-        now = timezone.localtime() - timezone.timedelta(minutes=5 - i)
-        labels.append(now.strftime('%H:%M:%S'))
-        user_request_count_i = len(Session.objects.filter(
-            expire_date__gte=now,
-            expire_date__lt=now + timezone.timedelta(minutes=1),
-            session_key__contains='_auth_user_id',
-        ))
-        user_request_data.append(user_request_count_i)
-        non_user_request_count_i = len(Session.objects.filter(
-            expire_date__gte=now,
-            expire_date__lt=now + timezone.timedelta(minutes=1),
-            session_key__icontains='guest',
-        ))
-        non_user_request_data.append(non_user_request_count_i)
-        request_count_data = {
-            'labels': labels,
-            'datasets': [
-                {
-                    'label': 'User Requests',
-                    'data': user_request_data,
-                    'borderColor': 'rgb(255, 99, 132)',
-                    'fill': False,
-                },
-                {
-                    'label': 'Non-User Requests',
-                    'data': non_user_request_data,
-                    'borderColor': 'rgb(54, 162, 235)',
-                    'fill': False,
-                },
-            ],
-        }
-        print(request_count_data)
-    return render(request, 'about/admin/dashboard.html')
+    bottle_bin_count = DataR.objects.filter(category='Bottle').values('latitude', 'longitude').distinct().count()
+    plastic_count = DataR.objects.filter(category='Plastic').values('latitude', 'longitude').distinct().count()
+    bio_bin_count = DataR.objects.filter(category='Bio').values('latitude', 'longitude').distinct().count()
+    feedback_count = Feedback.objects.all().count()
+    toilet_count = Toilet.objects.all().count()
+    context = {
+        'bottle_bin_count': bottle_bin_count,
+        'plastic_bin_count':  plastic_count,
+        'bio_bin_count': bio_bin_count,
+        'feedback_count': feedback_count,
+        'toilet_count': toilet_count,
+    }
+    return render(request, 'about/admin/dashboard.html', context)
 
 
 # vendor dashboard 
@@ -119,7 +95,6 @@ def vendor_bins(request):
     if request.user.is_authenticated:
         vendor = Vendor.objects.get(user=request.user)
         category_name = vendor.category
-        print(vendor)
 
         bins = DataR.objects.filter(
             category=category_name
@@ -316,44 +291,47 @@ def add_vendor(request):
             return redirect('vendors')
         else:
             messages.error(request, "Please upload both images.")
-            return redirect('vendor_add')
+            return redirect('add_vendor')
 
     return render(request, 'about/admin/add_vendor.html')
 
 
-#edit vendor
+#edit vendor import os
+import os
+from django.conf import settings
+
 def edit_vendor(request, id):
     vendor = Vendor.objects.get(id=id)
     if request.method == 'POST':
         # Update the vendor's profile and license images if provided
         profile_image = request.FILES.get('profile_image')
         license_image = request.FILES.get('license_image')
-        if profile_image and license_image:
+        if profile_image or license_image:
             # Delete the previous profile and license images (optional)
-            if vendor.profile_image:
-                os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.profile_image))
-            if vendor.license_photo:
-                os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.license_photo))
+            # if vendor.profile_image:
+            #     os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.profile_image.path))
+            # if vendor.license_photo:
+            #     os.remove(os.path.join(settings.STATICFILES_DIRS[0], vendor.license_photo.path))
                 
             # Save the new profile image to the static folder
-            profile_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/profile')
-            if not os.path.exists(profile_dir):
-                os.makedirs(profile_dir)
-            with open(os.path.join(profile_dir, profile_image.name), 'wb') as f:
-                for chunk in profile_image.chunks():
-                    f.write(chunk)
+            if profile_image:
+                profile_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/profile')
+                if not os.path.exists(profile_dir):
+                    os.makedirs(profile_dir)
+                with open(os.path.join(profile_dir, profile_image.name), 'wb') as f:
+                    for chunk in profile_image.chunks():
+                        f.write(chunk)
+                vendor.profile_image = f'static/images/profile/{profile_image.name}'
                     
             # Save the new license image to the static folder
-            license_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/license')
-            if not os.path.exists(license_dir):
-                os.makedirs(license_dir)
-            with open(os.path.join(license_dir, license_image.name), 'wb') as f:
-                for chunk in license_image.chunks():
-                    f.write(chunk)
-                    
-            # Update the vendor's information
-            vendor.profile_image = f'static/images/profile/{profile_image.name}'
-            vendor.license_photo = f'static/images/license/{license_image.name}'
+            if license_image:
+                license_dir = os.path.join(settings.STATICFILES_DIRS[0], 'images/license')
+                if not os.path.exists(license_dir):
+                    os.makedirs(license_dir)
+                with open(os.path.join(license_dir, license_image.name), 'wb') as f:
+                    for chunk in license_image.chunks():
+                        f.write(chunk)
+                vendor.license_photo = f'static/images/license/{license_image.name}'
         
         # Update other vendor fields
         vendor.name = request.POST.get('name')
@@ -375,6 +353,8 @@ def edit_vendor(request, id):
         'vendor': vendor
     }
     return render(request, 'about/admin/edit_vendor.html', context)
+
+
 
 
 
